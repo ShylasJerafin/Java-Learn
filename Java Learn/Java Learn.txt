@@ -1,0 +1,89 @@
+Instance Variable
+1.if the value of the variable varied from Obj to Obj, then such type of var are known as instance var
+2.Instance var will be created at the time of obj creation and destroyed at the time of obj destruction
+3.Scope of Inst var is the scope of the object
+4.We cannot access inst var directly into static methods but can access by using obj reference.
+5.Ins var also known as Attributes or Obj lvl variables
+6.Default value is provided by JVM. if we are not performing initialization.
+
+EX:
+class jef
+{
+    int a=10;
+    public static void Main(String[] args)
+    {
+     }
+     public void test()
+     {
+         System.out.println(a);
+     }
+}
+
+Your Main method is empty.
+test() is never called.
+Code Ex:
+class Jef
+{
+    int a = 10;
+
+    public static void main(String[] args)
+    {
+        Jef obj = new Jef();
+        obj.test();
+    }
+
+    public void test()
+    {
+        System.out.println(a);
+    }
+}
+
+Static Variable
+1.if the var of the value is not varied from obj to obj, then not required to declare the var as instance.
+2.within the class and outside the method or constructor or blocks, using static keyword
+3.we can access the static variable using class name.
+4.we can access the static var both instance and static methods
+(same cls na direct ah access pannalam - diff cls na classname use panni access pannanum)
+5.Default value is provided by JVM. if we are not performing initialization.
+
+Program Run Process
+1.Start JVM
+2.Create and start the thread
+3.locate  the class file
+4.load the class file - static var created
+5.executing the main method
+6.unload the class file - static var destroyed
+7.terminate the thread
+8.shut down JVM
+
+Methods
+ - used to write the business logic of our program or application
+ - collection of statement or block of code or set of instruction
+ - Code reusability
+ - once we write a method we can call this method anywhere
+
+Types of Methods
+ 1.User defined Method
+ 2.Pre-defined Method
+
+Syntax
+
+Accessmodifier keyword Returntype Methodname (parameter){
+ - logic -
+}
+
+Method Signature
+
+methodName (type of the parameter);
+
+Method Characteristics:
+ - Return Type with parameter
+ - Return Type without parameter
+ - Non Return Type with parameter
+ - Non Return Type without parameter
+
+Local var ah outside the method use pannanum na returntype ah method ah vacha varum
+value oda value matum than return pannum
+
+Thread:
+ - Oru process oda small unit

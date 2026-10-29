@@ -1,0 +1,374 @@
+Prgm 1:
+
+package com.exceptionhandling;
+
+public class ExceptionDemo{
+
+	public static void main(String[] args) {
+
+		System.out.println("Hello");
+		
+		//ArithmeticException
+		//		int a=10;
+		//		System.out.println(a/0);
+		
+		//nullpoiterexception
+//		String name=null;
+//		System.out.println(name.length());
+		
+		
+		//ArrayIndexOutOfBounsException
+		int[] arr= {2,3,45,5,7};
+		
+		try {
+			System.out.println(arr[5]);
+		}
+		catch(ArithmeticException e) {
+			System.out.println(e);
+		}
+		catch (NullPointerException e) {
+			System.out.println(e);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			System.out.println("important connection close...");
+		}
+		System.out.println("Rest of the code");
+	}
+}
+
+Prgm 2:
+
+package com.exceptionhandling;
+
+public class ThrowAndThrowsExample{
+
+	public static void main(String[] args){
+		try {
+			login("admin","1234");
+		} catch (InvalidPasswordException e) {
+			e.printStackTrace();
+		} catch (InvalidUserNameException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void login(String uname,String pass) throws InvalidPasswordException,InvalidUserNameException{
+		if(uname.isEmpty()) {
+			throw new InvalidUserNameException();
+		}
+		else if(pass.isEmpty()){
+			throw new InvalidPasswordException();
+		}
+	}
+}
+class InvalidUserNameException extends Exception{
+	
+}
+class InvalidPasswordException extends Exception{
+	
+}
+
+Prgm 3:
+
+package com.exception;
+
+import java.io.*;
+
+public class CheckedException {
+
+	public static void main(String[] args) {
+
+		//ClassNotFoundException
+		//		System.out.println("Welcome");
+		//		try {
+		//			Class.forName("com.exception.Test1");
+		//			System.out.println("class  found");
+		//		} 
+		//		catch (ClassNotFoundException e) {
+		//			System.out.println(e);
+		//		}
+		//		System.out.println("byee");
+
+
+		//InterruptedException
+		//		for(int i=0;i<100;i++) {
+		//			if(i==50) {
+		//				Thread.sleep(9000);
+		//			}
+		//			System.out.println(i);
+		//		}
+
+		//FileNotFoundException
+		//		try {
+		//			FileReader f=new FileReader("abc.txt");
+		//			System.out.println("file found");
+		//		} 
+		//		catch (FileNotFoundException e) {
+		//			System.out.println(e);
+		//		}
+
+//		//IOException
+//		FileReader fr=null;
+//	
+//			try {
+//				fr = new FileReader("abc.txt");
+//			} catch (FileNotFoundException e) {
+//				e.printStackTrace();
+//			}
+//
+//		BufferedReader br=new BufferedReader(fr);
+//		try {
+//			br.close();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+	}
+}
+//class Test1{
+//	public void print() {
+//		System.out.println(" i am Test classs!!!...");
+//	}
+//}
+
+Prgm 4:
+
+package com.exception;
+
+import java.util.Scanner;
+
+public class UncheckedExceptionSample {
+
+	public static void main(String[] args) {
+		//		System.out.println("Welcome");
+
+		//ArithmeticExc
+		//		try {
+		//			int a=10;
+		//			System.out.println(a/0);
+		//		}
+		//		catch(NullPointerException a) {
+		//			System.out.println(a);
+		//		}
+		//		catch (ArrayIndexOutOfBoundsException e) {
+		//			System.out.println(e);
+		//		}
+		//		catch(Exception a) {
+		//			System.out.println(a);
+		//		}
+		//		System.out.println("Byee");
+
+
+
+		//		//NullpointerException
+		//		try {
+		//			String name= null;
+		//			System.out.println(name.length());
+		//		}
+		//		catch(Exception a){
+		//			System.out.println(a);
+		//		}
+		//		System.out.println("tqq");
+
+
+		//ArrayIndexOutOfBounsException
+		//		System.out.println("welcome");
+		//		
+		//		try {
+		//			int[] arr=new int[5];
+		//			//System.out.println(arr[8]);
+		//			arr[8]=17;
+		//		}catch(Exception a) {
+		//			System.out.println(a);
+		//		}
+		//
+		//		System.out.println("tq");
+
+		//NumberFormateException
+//				System.out.println("welcome");
+//				try {
+//					String msg="dfghj";
+//					int a=Integer.parseInt(msg);
+//					System.out.println(a);
+//				}catch(Exception a) {
+//					System.out.println(a);
+//				}
+//				System.out.println("tq");
+//
+//		//StringIndexOutOfBoundsException
+//				try {
+//				String name="hello";
+//				System.out.println(name.charAt(7));
+//				}
+//				catch(Exception a) {
+//					System.out.println(a);
+//				}
+//
+//		//InputMisMatchException
+//				Scanner input = new Scanner(System.in);
+//				System.out.println("Enter the num :");
+//				int a=input.nextInt();
+//				System.out.println(a);
+//
+//		//NegativeArraySizeException
+//		try {
+//			int[] arr=new int[-5];
+//		}
+//		catch (Exception e) {
+//			System.out.println(e);
+//		}
+		
+		//IllegalArgumentException
+		System.out.println("welcome");
+		try {
+			ageCheck(-1);
+		}catch(Exception a) {
+			System.out.println(a);
+		}
+		System.out.println("bye");
+		
+	}
+	public static boolean ageCheck(int age) {
+		if(age<0) {
+			throw new IllegalArgumentException("Invalid age");
+		}
+		return true;
+	}
+}
+
+
+//IOException
+		FileReader file=null;
+		try {
+			 file=new FileReader("abc.txt");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		BufferedReader br=new BufferedReader(file);
+//		int a=0;
+		String b=null;
+		try {
+			while((b=br.readLine())!=null) {
+//				char ch=(char)a;
+				System.out.println(b);
+				br.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+Prgm 5:
+
+package com.exceptionhandling;
+
+import java.util.Arrays;
+
+public class BankApplication {
+
+	public static void main(String[] args) {
+		BankAccount binu=new BankAccount(3832,"Binu",327453534575l,6838.900);
+		System.out.println("Before withdraw amt :"+binu);
+		
+		try {
+			withdraw(binu,-8000);
+			System.out.println("After withdraw amt :"+binu);
+		} catch (InsuffucientBalanceException e) {
+			System.out.println(e);
+		} catch (NegativeBalanceException e) {
+			System.out.println(e);
+		}
+		finally {
+			System.out.println("Bank Account Logout");
+		}
+		
+	}
+	
+	public static void withdraw(BankAccount ba,double withdrawamt) throws InsuffucientBalanceException,NegativeBalanceException{
+		if(ba.getBalance()<withdrawamt)
+			throw new InsuffucientBalanceException("invalid entered amt!!...");
+		else if(withdrawamt<=0) 
+			throw new NegativeBalanceException("Negative value entered!!...");
+		else
+			ba.setBalance(ba.getBalance()-withdrawamt);
+	}
+}
+class BankAccount{
+	private int custid;
+	private String name;
+	private long accno;
+	private double balance;
+	
+	public BankAccount(int custid, String name, long accno, double balance) {
+		super();
+		this.custid = custid;
+		this.name = name;
+		this.accno = accno;
+		this.balance = balance;
+	}
+
+	public int getCustid() {
+		return custid;
+	}
+
+	public void setCustid(int custid) {
+		this.custid = custid;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public long getAccno() {
+		return accno;
+	}
+
+	public void setAccno(long accno) {
+		this.accno = accno;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
+	@Override
+	public String toString() {
+		return "BankAccount [custid=" + custid + ", name=" + name + ", accno=" + accno + ", balance=" + balance + "]";
+	}
+}
+class InsuffucientBalanceException extends Exception{
+	String msg;
+
+	public InsuffucientBalanceException(String msg) {
+		this.msg = msg;
+	}
+
+	@Override
+	public String toString() {
+		return "InsuffucientBalanceException [msg=" + msg + "]";
+	}
+	
+}
+class NegativeBalanceException extends Exception{
+	String msg;
+
+	public NegativeBalanceException(String msg) {
+		this.msg = msg;
+	}
+
+	@Override
+	public String toString() {
+		return "NegativeBalanceException [msg=" + msg + "]";
+	}
+	
+}

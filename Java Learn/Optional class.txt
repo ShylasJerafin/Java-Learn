@@ -1,0 +1,198 @@
+  OPTIONAL CLASS:
+---------------
+-> Optional<T> is a container object introduced in Java 8 in the java.util package.
+-> It may or may not contain a non-null value of type T.
+-> It’s mainly used to avoid NullPointerException and make 
+	null-handling more explicit.
+-> Instead of returning null from a method,
+	you return Optional.empty() or Optional.of(value).
+-> Works well with streams.
+
+Optional["hello"]
+
+Static Methods in Optional
+--------------------------
+1. Optional.empty()
+> Returns an empty Optional.
+example:
+--------
+Optional<String> op = Optional.empty();
+
+2. Optional.of(value)
+
+> Returns an Optional with the given non-null value. 
+> Throws NullPointerException if value is null.
+example :
+---------
+Optional<String> op = Optional.of("Hello");
+op.get() // return given value
+
+Optional<String> op = Optional.of(null);
+op.get() // throws NullPointerException
+
+3. Optional.ofNullable(value)
+
+> Returns an Optional with the given value, or Optional.empty if value is null. 
+
+Optional<String> op = Optional.ofNullable(name); 
+op.get() // return given value
+
+Optional<String> op = Optional.ofNullable(null); 
+op.get() // return Optional.empty
+
+
+non-static methods:
+-------------------
+
+
+Value Presence Check
+--------------------
+isPresent() -> boolean
+isEmpty() -> java 11
+
+Conditional Execution
+---------------------
+ifPresent(Consumer)
+
+ex:
+Optional<String> obj = Optional.ofNullable(null);
+		// Consumer<String> ref = x -> System.out.println(x);
+	
+		obj.ifPresent(x -> System.out.println(x));
+
+
+
+retrieve the value
+------------------
+get()
+orElse(T)
+orElseGet(Supplier)
+orElseThrow(Supplier)
+
+try 
+		{ 
+		    String name = obj.orElseThrow(()-> { throw new RuntimeException("No Data Found");});
+		    System.out.println(name);
+		}
+		catch(RuntimeException e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+Transformation
+--------------
+map(Function) 
+filter(Predicate)
+
+other methods
+--------------
+stream()
+
+
+
+filter() Method
+------------------------------------
+
+1. filter() Method
+
+Used to check a condition on the value inside Optional.
+
+If condition is true → value remains
+If condition is false → returns empty Optional
+
+
+
+Map() method 
+--------------------------------
+
+Used to transform/change the value inside Optional.
+
+Takes value
+Modifies it
+Returns new Optional
+
+
+flatMap() method 
+------------------------------------
+flatMap() in Optional is used to avoid nested Optional objects.
+It is mainly used when a method already returns an Optional.
+flatMap() automatically removes the extra Optional layer.
+
+
+Sample Program
+--------------
+
+package com.java8featurs;
+
+public class OptinalClassDemo {
+
+	public static void main(String[] args) {
+	
+		Person ram=new Person("Ram",new Bike("KTM",new Insurance("Sree ram 1000000")));
+		System.out.println(ram.getBikeInsuranceName(ram));
+		
+		Person jerafin=new Person("jerafin",new Bike("R15",null));
+		System.out.println(jerafin.getBikeInsuranceName(jerafin));
+		
+	}
+}
+class Person{
+	private String name;
+	private Bike bike;
+
+	public Person(String name,Bike bike) {
+		super();
+		this.name=name;
+		this.bike=bike;
+	}
+	public String getName() {
+		return name;
+	}
+	public Bike getBike() {
+		return bike;
+	}
+	
+	public String getBikeInsuranceName(Person person) {
+//		return getBike().getInsurance().getName();
+		if(person!=null) {
+			 Bike bike=person.getBike();
+			 if(bike!=null) {
+				 Insurance insurance=bike.getInsurance();
+				 if(insurance!=null) {
+					return insurance.getName(); 
+				 }
+			 }
+		}
+		return "null value occured";
+	} 
+}
+class Bike{
+	private String name;
+	private Insurance insurance;
+
+	public Bike(String name,Insurance insurance) {
+		//super();
+		this.name=name;
+		this.insurance=insurance;
+	}
+	public String getName() {
+		return name;
+	}
+	public Insurance getInsurance() {
+		return insurance;
+	}
+
+}
+class Insurance{
+	private String name;
+
+	public Insurance(String name) {
+		//super();
+		this.name=name;
+	}
+	public String getName() {
+		return name;
+	}
+
+}
+

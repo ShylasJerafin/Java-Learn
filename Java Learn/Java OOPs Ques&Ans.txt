@@ -1,0 +1,140 @@
+Java Memory Allocation
+
+1]What is Memory Allocation?
+When a Java program runs, the JVM needs memory to store:
+Variables
+Objects
+Methods
+Classes
+Arrays
+Strings
+Method calls
+Static data
+
+The JVM divides memory into different areas.
+
+The most important areas for beginners are:
+
+JVM Memory
+│
+├── Stack - stores method call frames, local variables, partial results; one stack per thread
+│
+├── Heap - stores all objects and instance variables; shared across threads
+│
+├── Method Area - stores class-level data: class structure, static variables, method bytecode, constant pool
+│
+├── PC (Program Counter) Register — holds the address of the currently executing JVM instruction; one per thread
+│
+└── Native Method Stack — supports native (non-Java, e.g., C/C++ via JNI) method calls
+
+Note: Actual variable/object memory allocation happens primarily during runtime, not when you compile the Java file.
+
+| Stack                                     | Heap                                  |
+| ----------------------------------------- | ------------------------------------- |
+| Associated with method execution          | Stores objects/arrays                 |
+| Contains local variables/references       | Contains object instance data         |
+| Stack frames are created for method calls | Objects created using `new` live here |
+| Automatically managed as methods return   | Managed by Garbage Collector          |
+| Each thread has its own stack             | Heap is shared among threads          |
+
+Stack													Heap
+--------------------------------------------------  |	---------------------------------------------		|	
+Stores local variables, method calls, references	|	Stores actual objects and instance variables
+Memory allocated/deallocated automatically (LIFO) 	|	Managed by Garbage Collector
+as methods enter/exit								|
+Faster access										|	Relatively slower access
+Thread-specific (each thread has its own stack)		|	Shared across all threads
+Fixed/limited size — can cause StackOverflowError	|	Larger, can cause OutOfMemoryError
+ ----------------------------------------------------------------------------------------------------
+                         JVM
+                          |
+        ┌─────────────────┼─────────────────┐
+        ↓                 ↓                 ↓
+      STACK             HEAP          METHOD AREA
+        |                 |                 |
+        |                 |                 |
+   method frames       objects          class info
+   local variables     arrays           methods
+   references                           static data
+        |                 |
+        |                 |
+        └──── references ─┘
+		
+2]Stack Overflow:
+
+Because stack memory is limited, excessive method calls can cause: StackOverflowError
+Ex:
+class Demo {
+    static void test() {
+        test();
+    }
+    public static void main(String[] args) {
+        test();
+    }
+}
+What happens:
+main()
+ ↓
+test()
+ ↓
+test()
+ ↓
+test()
+ ↓
+test()
+ ↓
+...
+
+Stack keep growing
+┌──────────┐
+│ test()   │
+├──────────┤
+│ test()   │
+├──────────┤
+│ test()   │
+├──────────┤
+│ test()   │
+├──────────┤
+│ main()   │
+└──────────┘
+Eventually -> StackOverflowError
+
+3]Heap Overflow
+Heap is where objects and arrays are allocated.
+If your program keeps creating objects and they remain reachable:
+Ex:
+while (true) {
+    Student s = new Student();
+}
+Depending on what remains reachable and JVM behavior, excessive heap usage can eventually result in:
+OutOfMemoryError: Java heap space
+
+
+Classes and Objects
+1]Objects:
+	• Object is the primary unit of Object-Oriented Programming.
+	• It represents the real-life entities. Example: pen, chair, table, computer, watch, etc.,
+	• It can be physical or logical.
+	• An object has three characteristics:
+		1. State: represents data or value stored in an object.
+		2. Behavior: represents the behavior or functionality of an object. This function is used to manipulate the data and interact with other objects
+		3. Identity: It gives unique name to an object. Each object is identified in Java by unique memory location.
+2]Class: 
+	• Class is a template or blueprint of the objects.
+	• It defines the state (variables) and behaviour (methods) common to all objects of a certain kind.
+	• It is used to create object instances.
+	
+3]Access  Modifiers:
+• Access modifiers or specifiers defines the scope and accessibility of data and method in class.
+• There are three Java access modifiers:
+	1. public: accessible in all class in your application.
+	2. protected: accessible within the class in which it is defined and in its subclass(es).
+	3. private: accessible only within the class in which it is defined.
+	4. default (declared/defined without using any modifier) : accessible within same class and package
+	within which its class is defined.
+	
+Note:
+• For classes and interface, you can use either public or default
+• For attributes, methods and constructors, you can use the one of the following: Private, Protected, Public
+
+

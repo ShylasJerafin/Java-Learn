@@ -1,0 +1,199 @@
+
+  List 
+--------------
+ list is a sub-interface of Collection interface use to store order data;
+
+List Interface
+--------------
+-> List maintain the insersion order 
+-> ArrayList, LinkedList, Vector -> Stack
+->  list allow ( homogenous and heterogenous ) elements 
+-> List allows duplicate element and null 
+
+Operations 
+--------------  
+   > add    - based on index
+   > remove - based on index
+   > set    - based on index
+   > search(indexOf, LastIndexOf) - based on index
+
+Methods 
+----------------
+   add(int index, E element)  ---> void 
+   get(int index)   ------> element 
+   indexOf(Object o)  ----> will return index else  -1
+   lastIndexOf(Object o) ------>  it is also return index of the element matching last 
+   listIterator()       -------> 
+   listIterator(int index)
+   remove(int index)
+   replaceAll(UnaryOperator<E> operator)  
+   set(int index, E element)  
+   sort(Comparator<? super E> c)
+   subList(int fromIndex, int toIndex)
+  
+   ArrayList 
+   --------------------------------------
+   -> it is a sub class of List interface 
+   -> It belongs to java.util package
+   -> Maintains insertion order
+   -> Allows duplicate elements and Null 
+   -> Provides index-based access
+   -> resizable (dynamic Array)
+   -> default capacity 10 x 1.5 =15
+   
+Advantage 
+--------------
+-> Random Access 
+-> resizable (dynamic Array)
+
+Disadvantage 
+--------------
+-> Insertion 
+-> Deletion 
+------------------------- * ------------------ * ---------------------- 	
+LinkedList
+-----------------
+LinkedList (class):
+------------------
+
+1) What is LinkedList?
+
+LinkedList is a doubly linked list implementation of List and Deque interfaces.
+
+  -> Maintains insertion order
+  -> Allows duplicates & nulls
+  -> Fast insertions/deletions in middle
+  -> Slow for random access (get(index))
+  -> It works on nodes instead of array.
+
+2) Internal Structure
+Each element is stored in a Node:
+
+  class Node<E> {
+    E item;
+    Node<E> next;
+    Node<E> prev;
+}
+
+So each element has a reference to previous and next (doubly linked).
+
+3) Constructors
+List<String> list = new LinkedList<>();
+Deque<Integer> dq  = new LinkedList<>();
+(LinkedList also implements Deque, so it can be used as Queue or Stack)
+
+4) Performance
+
+| Operation               | LinkedList        | Why                              |
+| ----------------------- | ----------------- | -------------------------------- |
+| add/remove at head/tail | O(1)              | No shifting, just pointer change |
+| add/remove in middle    | O(1) once located | but locating takes O(n)          |
+| get(index)              | O(n)              | must traverse nodes sequentially |
+| contains()              | O(n)              | linear traversal                 |
+
+5) Useful Methods
+add(), add(index,e), get(), set(), remove()
+
+From Deque (extra features):
+addFirst(e), addLast(e)
+removeFirst(), removeLast()
+peekFirst(), peekLast()
+offer(), poll(), push(), pop()
+ 
+6) When to Use LinkedList?
+
+Frequent insert/delete in middle or ends
+Need Queue / Deque behavior
+Not much random access
+
+Avoid when:
+You need fast get(index) access — use ArrayList instead.
+
+
+Vector 
+-------------------------------
+Vector (class):
+---------------
+1) What is Vector?
+
+Vector is a growable array similar to ArrayList, but the main difference is:
+Thread-safe (synchronized)
+Slower than ArrayList due to synchronization
+Maintains insertion order
+Allows duplicates and null
+Part of legacy classes (before Collection Framework — JDK 1.0)
+Updated later to implement List
+
+
+2) Internal Working
+Internally Vector uses:
+Object[] elementData;
+Default initial capacity = 10  * 2 20
+When array is full, it grows by double (oldCapacity * 2) (not 1.5 like ArrayList)
+
+3) Constructors
+Vector<Integer> v1 = new Vector<>();         // default size = 10
+Vector<Integer> v2 = new Vector<>(50);       // custom initial size
+Vector<Integer> v3 = new Vector<>(v2);       // copy another collection
+ 
+ArrayList	-> 50% (It increases by half its current size)
+Vector	    -> 100% (It doubles its current size)
+
+Methods 
+ ----------
+ 1. addElement(); 
+ 2. insertElement();    ---
+ 3. firstElement(); 
+ 4. lastElement();
+ 5. elementAt();
+ 6. insertElementAt();
+ 7. setElementAt();
+ 8. removeElementAt();
+ 9. removeAllElement(); 
+ 10.capacity();
+ 11. ensureCapacity();
+ 12. copyinto();
+ 13. trimetoSize();
+ 14. setSize();
+
+6) When to use Vector?
+
+Use Vector when:
+Thread safety is required (multi-threaded environment)
+Legacy project uses Vector already
+
+Avoid Vector when:
+Working in single-thread → use ArrayList (faster)
+Modern concurrent alternatives like CopyOnWriteArrayList exist
+
+7) Vector vs ArrayList:
+| Feature  | Vector              | ArrayList                 |
+| -------- | ------------------- | ----------------------    |
+| Sync     | Yes (thread-safe)   | No (not thread-safe)      | 
+| Speed    | Slower              | Faster                    |
+| Growth   | Doubles             | Grows by 1.5x (50%)       |
+| Use case | Multi-threaded      | Single-threaded           |
+ 
+ 
+Stack 
+-----------------------------------------------
+ -> Stack follows LIFO (Last In, First Out) principle
+ -> Elements are added and removed from the top of the stack 
+ -> it is present in  java.util package
+ -> Common operations: push, pop, peek
+ -> Used in : undo/redo, recursion, browser back button
+ -> Internally based on Vector (thread-safe but slower)
+ 
+ 
+ Stack provides 5 main methods:
+
+| Method             | Description                         |
+| ------------------ | ----------------------------------- |
+|  push(E item)      | Insert element on top               |
+|  pop()             | Remove + return top element         |
+|  peek()            | Return top element without removing |
+|  empty()           | Check if stack is empty             |
+|  search(Object o)  | Position from top                   | 
+
+  
+

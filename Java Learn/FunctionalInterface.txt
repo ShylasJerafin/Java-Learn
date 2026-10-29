@@ -1,0 +1,593 @@
+Functional Interface
+--------------------------
+
+ -> A Functional Interface is an interface that contains exactly one abstract method.(SAM Interface)
+ -> more than one default and static methods 
+ -> 
+
+@FunctionalInterface 
+Interface Sample{
+
+   void hello();
+}
+
+
+Predefined-FunctionalInterface 
+------------------------------- 
+
+
+	-> Predicate<T>     BiPredicate<>         
+	-> Function<T, R>   BiFunction<>                                      
+	-> Consumer<T>     BiConsumer<>                                  
+	-> Supplier<T>                                               
+	-> UnaryOperator<T> 
+
+
+1.Predicate<T> Functional Interface 
+------------------------------------------
+	-> Predicate is a Functional interface its return only boolean value 
+	
+	Predicate -- methods    ( test, and ,or, negate , not ,isEquel )
+	test(T e)  --> given element returns boolean
+	
+Default Methods 
+	  and() --> && operation 
+	  or()-->  || operation 
+	  negate --> ! not operation 
+
+static Method :
+              not() ---> !not operation (static way)
+              isEquel()	-> compare the Strings 
+
+Sample Program:
+--------------
+
+package Java8_Features;
+
+import java.util.function.Predicate;
+
+public class Predicate_FI_Demo implements Sample {
+
+  public static void main(String[] args) {
+
+    //Static Method - can be called directly using interface name and its cannot be overridden
+    Sample.s2();
+    //Default Method - class must implements to use it and
+    Predicate_FI_Demo ref = new Predicate_FI_Demo();
+    ref.s1();
+    ref.s();
+
+    //Predicate Function - Anonymous Class - Abstract Method
+    Predicate<Integer> ageCheck = new Predicate<>() {
+      @Override
+      public boolean test(Integer age) {
+        if(age>18)
+          return true;
+        else
+          return false;
+      }};
+    System.out.println(ageCheck.test(25));
+
+    //Predicate Function - Converting Anonymous Class into Lambda Expression
+    //Predicate<Integer> agechk = age -> (age>18)?true:false;
+    Predicate<Integer> agechk = age -> (age>18);
+    System.out.println(agechk.test(22));
+
+    //User Class objects
+
+    User jerafin = new User("Jerafin",28,80);
+    User joel = new User("Joel",19,45);
+
+    //User Class - Predicate Function - Abstract Method - Anonymous Class
+
+    Predicate<User> ageC = new Predicate<User>() {
+      @Override
+      public boolean test(User user) {
+        if(user.getAge()>18)
+          return true;
+        else
+          return false;
+      }
+    };
+
+    Predicate<User> weightC = new Predicate<User>() {
+      @Override
+      public boolean test(User user) {
+        if(user.getWeight()>60)
+          return true;
+        else
+          return false;
+      }
+    };
+    System.out.println(ageC.test(jerafin));
+    System.out.println(weightC.test(jerafin));
+
+    //Predicate Function using User Class - Converting Anonymous Class into Lambda Expression
+    Predicate<User> checkAge = user -> (user.getAge()>18);
+    Predicate<User> checkWeight = user -> (user.getWeight()>50);
+    System.out.println(checkAge.test(joel));
+    System.out.println(checkWeight.test(joel));
+
+    //Predicate &&
+
+    Predicate<User> doubleCheck = new Predicate<User>() {
+      @Override
+      public boolean test(User user) {
+        if(user.getAge()>18&&user.getWeight()>50)
+          return true;
+        else
+          return false;
+      }
+    };
+    System.out.println(doubleCheck.test(joel));
+
+    //Predicate Default AND, OR and NEGATE Methods
+
+    Predicate<User> checkD = checkAge.and(checkWeight);
+    System.out.println("AND - "+checkD.test(joel));
+
+    Predicate<User> checkDoub = checkAge.or(checkWeight);
+    System.out.println("OR  - "+checkDoub.test(joel));
+
+    Predicate<User> checkNegate = checkAge.negate();
+    System.out.println("NEGATE - "+checkNegate.test(jerafin));
+
+    //Predicate Static NOT, ISEQUAL Methods
+
+    Predicate<User> namecheck = user -> user.getName().equals("Joel");
+    System.out.println("EQUAL - "+namecheck.test(joel));
+    Predicate<User> notCheck = Predicate.not(namecheck);
+    System.out.println("NOT - "+notCheck.test(joel));
+
+
+  }
+  //We can overwrite the Default Method
+  @Override
+  public void s1() {
+    System.out.println(" Overridden Default Method");
+  }
+
+  @Override
+  public void s() {
+    System.out.println(" Overriden Abstract Method");  
+  }
+}
+
+
+@FunctionalInterface
+interface Sample{
+  void s();
+
+  default void s1() {
+    System.out.println(" Default Method");
+  }
+  static void s2() {
+    System.out.println(" Static Method");
+  }
+}
+
+class User{
+  String name;
+  int age;
+  int weight;
+
+  public User(String name, int age, int weight) {
+    this.name = name;
+    this.age = age;
+    this.weight = weight;
+  }
+
+  public String getName() {
+    return name;
+  }
+  public int getAge() {
+    return age;
+  }
+  public int getWeight() {
+    return weight;
+  }
+}
+ 
+  
+BiPredicate<T,U> 
+----------------------
+  -> BiPredicate is a Functional Interface its return only boolean value and its check two 
+     paramiters 
+
+    BiPredicate Methods :  (test , and ,or , negate)
+    test(T e , T u)  --> given element returns boolean
+
+Default Methods :
+	  and() --> && operation 
+	  or()-->  || operation 
+	  negate --> ! not operation 
+    
+Sample Program
+---------------
+
+package com.java8featurs;
+
+import java.util.function.BiPredicate;
+
+public class BiPredicateExample {
+
+	public static void main(String[] args) {
+		
+		User1 barath=new User1("Barath","Barath@123");
+		DB db=new DB();
+		
+//		BiPredicate<User1, DB> bp=new BiPredicate<User1, DB>(){
+//			@Override
+//			public boolean test(User1 t, DB u) {
+//				if(t.getUname().equals(u.uname)&&t.getPassword().equals(u.pass))
+//				return true;
+//				else
+//					return false;
+//			}
+//		};
+		//abstract method
+//		BiPredicate<User1, DB> bp=(t,u)->
+//			(t.getUname().equals(u.uname)&&t.getPassword().equals(u.pass))?true:false;
+		//System.out.println(bp.test(barath, db));
+		
+			//deafult method
+			
+			//and()
+		BiPredicate<User1, DB> bp=(t,u)->
+		(t.getUname().equals(u.uname)&&t.getPassword().equals(u.pass))?true:false;
+		
+		
+		BiPredicate<User1, DB> bp1=(t,u)->(t.getUname().startsWith("B")&&u.uname.startsWith("B")
+				&&t.getPassword().startsWith("B")&&u.pass.startsWith("B"))?true:false;
+		
+		BiPredicate<User1, DB> andresult=bp.and(bp1);
+		System.out.println("and result :"+andresult.test(barath, db));//true
+		
+		BiPredicate<User1, DB> orresult=bp.or(bp1);
+		System.out.println("or result :"+orresult.test(barath, db));//true
+		
+		BiPredicate<User1, DB> negateresult=andresult.negate();
+		System.out.println("negate result :"+negateresult.test(barath, db));//false
+		
+		
+	}
+}
+class User1{
+	String uname;
+	String password;
+	
+	public User1(String uname, String password) {
+		super();
+		this.uname = uname;
+		this.password = password;
+	}
+
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [uname=" + uname + ", password=" + password + "]";
+	}
+}
+class DB{
+	String uname="Barath";
+	String pass="Barath@123";
+}
+
+
+
+
+2. Function<T,R>
+-------------------------------------------------------
+	-> Function is a Functional interface Takes one input Returns one output 
+
+	apply()  --> abstract method
+
+Default Methods :
+	andThan() --> first one is run then return the output to the second function 
+	compose() --> secound one is run  then return the output to the first  Function
+static Methods :
+	identity() --> given input also return 
+
+Sample Program
+--------------
+
+package com.java8featurs;
+
+import java.util.function.Function;
+
+public class FunctionExample {
+
+	public static void main(String[] args) {
+		
+		//abstract method
+//		Function<Integer,String> fun=new Function<Integer, String>() {
+//			@Override
+//			public String apply(Integer salary) {		
+//				return "Bouns :"+(salary+5000);
+//			}
+//		};
+//		Function<Integer,String> fun=(Integer salary)-> "Bouns :"+(salary+5000);
+//		String crtsalary=fun.apply(12000);
+//		System.out.println(crtsalary);
+		
+		//deafult method
+		
+//		Function<String,String> a=(t)-> t.trim();
+//		Function<String,Integer> b=(t)-> t.length();
+//		
+//		Function<String,Integer> result=a.andThen(b);//a frst fun b sec fun
+//		System.out.println(	"andThen() "+result.apply("   java   "));
+//		
+//		Function<String,Integer> result1=b.compose(a);//a frst fun b sec fun
+//		System.out.println(	"compose() "+result1.apply("   java   "));
+		
+//		Function<String,String> identity=Function.identity();
+//		System.out.println(identity.apply("Hello Welcome"));
+	}
+}
+
+
+BiFunction<T,U,R> 
+------------------------
+ -> BiFunction is a functional interface Takes TWO inputs  Returns ONE output
+ 
+	apply()  --> abs method
+
+Default Methods :
+	andThan() --> first one is run then return the output to the second function 
+
+Sample Program
+--------------
+package com.java8featurs;
+
+import java.util.function.BiFunction;
+
+public class BiFunctionExample {
+
+	public static void main(String[] args) {
+		
+//		BiFunction<Double,Double,String>  bifun=new BiFunction<Double, Double, String>() {
+//			@Override
+//			public String apply(Double price, Double gst) {
+//				return "Total bill amount :"+(price+gst);
+//			}
+//		};
+//			BiFunction<Double,Double,String>  bifun=( price,  gst) ->
+//				 "Total bill amount :"+(price+gst);
+//			System.out.println(bifun.apply(1200.00, 23.45));
+	}
+}
+
+3.Consumer<T>  
+-------------------------------
+	-> Consumer is a functional interface Takes one input Returns nothing (void)
+
+	accept() ---> one input there is no return type here 
+
+Default Methods :	
+	andThen() --> first one is run then next one is run 
+
+BiConsumer<T,U>
+---------------
+ -> BiConsumer is a functional interface Takes TWO inputs Returns nothing (void)
+
+	accept() ---> two input there is no return type here 
+
+Default Methods :
+	andThen() --> first one is print then next one is print
+
+Sample Program
+--------------
+
+package com.java8featurs;
+
+import java.util.*;
+import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+
+
+public class ConsumerDemo {
+
+	public static void main(String[] args) {
+		
+//	        //abstract method accept(T t)
+//		
+			Customer customer=new Customer(199,"Arun",25,true);
+//		
+//			Consumer<Customer> id=(a)->System.out.println(a.getName());
+//			Consumer<Customer> name=(a)->System.out.println(a.getAge());
+//			Consumer<Customer> status=(a)->System.out.println(a.isStatus());
+//			
+//			//default method
+//			Consumer<Customer> c=id.andThen(status).andThen(name);
+//			c.accept(customer);
+		
+		
+			//Biconsumer abstarct method accept(T t,U u)
+			BiConsumer<Customer,String> bicon=(cus,companyname)->
+			System.out.println(cus+" "+companyname);
+			bicon.accept(customer, "ABC Solution");
+	}
+
+}
+
+class Customer{
+	int id;
+	String name;
+	int age;
+	boolean status;
+	
+	public Customer(int id, String name, int age, boolean status) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+		this.status = status;
+	}
+	public int getId() {
+		return id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", name=" + name + ", age=" + age + ", status=" + status + "]";
+	}
+}
+
+
+4.Supplier<T>
+------------------------------------
+ -> Supplier is a functional interface Takes NO input  Returns a value
+
+   get()--> return the value 
+
+Sample Program
+---------------
+package com.java8featurs;
+
+import java.util.function.Supplier;
+
+public class SupplierExample {
+
+	public static void main(String[] args) {
+		
+//		Supplier<String> s=()->"Welcome to all";
+//		System.out.println(s.get());
+	}
+}
+
+
+5.UnaryOperator<T>
+--------------------------------------
+
+ -> A UnaryOperator<T> takes one input and returns the same type output.
+
+Why use UnaryOperator ?
+
+-> Input type and return type are same
+-> We want to modify/transform a value
+
+Real-time Examples
+Convert String to uppercase
+Increment number
+Trim text
+Update object values
+
+
+6.BinaryOperator<T>
+----------------------------------
+A BinaryOperator<T> Takes two inputs  Returns same type of output
+
+-> Addition    
+-> String merge	
+-> Compare values	
+-> Stream reduction
+-> Combine objects
+
+package com.java8featurs;
+
+import java.util.function.BinaryOperator;
+import java.util.function.UnaryOperator;
+
+public class UnaryOperatorDemo {
+
+	public static void main(String[] args) {
+
+//		UnaryOperator<String> u=(s)->s.toUpperCase();
+//		System.out.println(u.apply("hello"));
+//		
+//		UnaryOperator<String> a=UnaryOperator.identity();
+//		System.out.println(a.apply("java"));
+		
+		//BinaryOperator
+		BinaryOperator<String> c=(a,b)->a.concat(b);	
+		System.out.println(	c.apply("ram", "kumar"));
+	}
+}
+
+
+Lambda Expression
+---------------------------
+ -> A Lambda Expression is a short way to implement a Functional Interface.
+It replaces:
+Anonymous class
+Boilerplate code
+
+   Method Reference 
+-----------------------------------
+
+     ClassName :: methodName ;  s :: methodName 
+
+  -> Static Method Reference    -> ClassName :: methodName 
+  -> Instance Method Reference  -> ObjectReference :: methodName 
+  -> Constructro Method Reference ->  ClassName :: new 
+  -> Arbitory method Reference     -> stream with Collectors ? 
+
+
+Java 8 Functional Interface Tasks — Employee and User Objects
+Use Function, BiFunction, Predicate, and BiPredicate with Employee and User objects stored in List, Set, Queue, and Map.
+
+Assume the following fields:
+- Employee: id, name, age, salary, department
+- User: id, name, age, email, city
+
+List-based questions
+1. Predicate: Given a List<Employee>, filter employees whose salary is greater than ₹50,000 and age is above 25.
+
+2. Function: Given a List<Employee>, convert each employee's name to uppercase and collect the names into a new List.
+
+3. BiFunction: Given two Employee objects, calculate their combined salaries and return the total salary.
+
+4. BiPredicate: Given two Employee objects, check whether both belong to the same department and have the same salary.
+
+5. Predicate + Function: Given a List<User>, filter users from Chennai and transform their names to uppercase.
+
+Set-based questions
+6. Predicate: Given a Set<Employee>, filter employees who belong to the IT department and have more than five years of experience.
+
+7. Function: Given a Set<User>, extract each user's email address and collect the results into a Set.
+
+8. BiPredicate: Given two User objects, check whether they have the same email address, ignoring case.
+
+Queue-based questions
+9. Predicate: Given a Queue<Employee>, filter employees whose salary is between ₹40,000 and ₹80,000.
+
+10. Function: Given a Queue<User>, convert each user object into a string containing the user's name and city.
+
+11. BiFunction: Given two Employee objects, return the employee with the higher salary.
+
+Map-based questions
+12. BiPredicate: Given a Map<Employee, Integer> where the value represents performance ratings, filter employees whose salary is above ₹60,000 and whose rating is at least 4.
+
+13. Function: Given a Map<Integer, Employee>, increase every employee's salary by 10% and return the updated Employee objects.
+
+14. BiFunction: Given two User objects, create a new result containing the first user's name and the second user's city.
+
+Mixed collection challenge
+15. Predicate + Function + BiFunction + BiPredicate: Given a List<Employee> and a List<User>, find employees earning more than ₹50,000, match them with users whose names are equal ignoring case, convert the matched employee names to uppercase, and calculate the total salary of all matched employees.
+
+

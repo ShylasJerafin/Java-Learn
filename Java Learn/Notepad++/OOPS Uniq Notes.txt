@@ -1,0 +1,1214 @@
+Object Oriented Programming  (OOP) Concepts
+
+Contents
+
+• Classes and Objects
+• Encapsulation
+• Inheritance
+• Abstraction
+• Polymorphism
+
+Classes and Objects
+
+Objects:
+	• Object is the primary unit of Object-Oriented Programming.
+	• It represents the real-life entities. Example: pen, chair, table, computer, watch, etc.,
+	• It can be physical or logical.
+	• An object has three characteristics:
+		1. State: represents data or value stored in an object.
+		2. Behavior: represents the behavior or functionality of an object. This function is used to manipulate the data and interact with other objects
+		3. Identity: It gives unique name to an object. Each object is identified in Java by unique memory location.
+Class: 
+	• Class is a template or blueprint of the objects.
+	• It defines the state (variables) and behaviour (methods) common to all objects of a certain kind.
+	• A class is a logical entity and describes the object's properties and behaviours.
+	• It is used to create object instances.
+Class Declaration
+Syntax:
+		Keyword
+		   |
+Access specifier class Class_name{ 
+	Fields
+	+
+	Behaviours
+}
+
+public class Theatre {
+	String theatreID = “T4523”;		Fields/Properties / Attributes/States
+	String theatreName = "INOX";
+	
+	public void displayTheatre(){
+		System.out.println("Theatre ID : "+theatreID);
+		System.out.println("Theatre Name : "+theatreName);  Operations/Behaviours/Methods
+	}
+}
+
+
+Access  Modifiers
+• Access modifiers or specifiers defines the scope and accessibility of data and method in class.
+
+• There are three Java access modifiers:
+	1. public: accessible in all class in your application.
+	2. protected: accessible within the class in which it is defined and in its subclass(es).
+	3. private: accessible only within the class in which it is defined.
+	4. default (declared/defined without using any modifier) : accessible within same class and package
+	within which its class is defined.
+
+Note:
+• For classes and interface, you can use either public or default
+• For attributes, methods and constructors, you can use the one of the following: Private, Protected, Public
+------------------------------------------------------------------------------------------
+//13/04/26
+
+Object Creation
+
+• When an object of a class is created, the class is said to be instantiated. All the instances can have the same attributes and the functions of the class.
+• The memory allocation of each object is unique , which means the value initialized to each object is distinct.
+• A single class may have any number of instances.
+
+Syntax:
+ClassName objectName = new ClassName();
+
+• The new keyword creates (instantiates) a new instance. It instantiates a class by allocating memory
+for a new object.
+
+public class Theatre {
+
+	String theatreID= “T4523”;
+	String theatreName= "INOX";
+	
+	public void getTheatreDetails(){              //Displaying Theatre details
+		System.out.println("Theatre ID : "+theatreID);
+		System.out.println("Theatre Name : "+theatreName);
+	}
+
+	public static void main(String[] args) {
+		//Declare and instantiate 
+		Theatre T1 = new Theatre(); 
+		//Declare the reference 
+		Theatre T2;                
+		//Then instantiate
+		T2 = new Theatre();   
+	}
+}
+
+Note: 
+	• A declaration only create reference variable.
+	• Allocate memory to object only at that time of instantiation.
+
+package com.oops;
+
+public class ObjectCreation {
+
+	public static void main(String[] args) {
+		Employee emp=new Employee();
+		emp.displayEmpDetails();
+		
+//		Employee emp1;//dec 
+//		emp1=new Employee();
+//		
+//		//multiple obj creation
+//		Employee emp2=new Employee();
+//		Employee emp3=new Employee();
+//		Employee emp4=new Employee();
+//		
+//		//or
+//		Employee obj=new Employee(),obj1=new Employee(),obj2=new Employee();
+
+	}
+}
+//class Employee{
+//	int id=100;
+//	String name="binu";
+//	
+//	public void displayEmpDetails() {
+//		System.out.println("id :"+id);
+//		System.out.println("name :"+name);
+//	}
+//	
+//}
+
+
+Multiple Object Creation
+
+• To create multiple objects like multiple variable, declare in the same declaration.
+• Example: Theatre T1 = newTheatre(), Theatre T = new Theatre(); //two objects in single creation
+
+package com.oops;
+
+public class ObjectCreation {
+
+	public static void main(String[] args) {
+		Employee emp=new Employee();
+		emp.displayEmpDetails();
+		
+//		Employee emp1;//dec 
+//		emp1=new Employee();
+//		
+//		//multiple obj creation
+//		Employee emp2=new Employee();
+//		Employee emp3=new Employee();
+//		Employee emp4=new Employee();
+//		
+//		//or
+//		Employee obj=new Employee(),obj1=new Employee(),obj2=new Employee();
+
+	}
+}
+//class Employee{
+//	int id=100;
+//	String name="binu";
+//	
+//	public void displayEmpDetails() {
+//		System.out.println("id :"+id);
+//		System.out.println("name :"+name);
+//	}
+//	
+//}
+
+
+Array of Objects:
+	• Like array of primitive types, the array of objects to store the location of reference variables of the object.
+	• Syntax: Class obj[]= new Class[array_length]
+	• Example:Theatre obj[]=new Theatre[10]; //Create 10 Objects
+
+
+package com.oops;
+
+import java.util.Scanner;
+
+public class ArrayOfObj {
+
+	public static void main(String[] args) {
+		
+//		int a=10;// emp k7=new emp();
+//		int b=90;// emp binu=new emp();
+//		int[] arr=new int[] {2,4,6,890};//arr[0]=k7{id,name,salary}//arr[1]=binu(id,name,salary)
+		
+//		String[] str=new String[2];
+//		str[0]="kumar";
+//		str[1]="kamal";
+//		
+//		for(String a:str) {
+//			System.out.println(a);
+//		}
+		
+		
+		//Array Of Object
+		Employee[] arr=new Employee[5];
+		Scanner input=new Scanner(System.in);
+		
+//		arr[0]=new Employee();
+//		arr[1]=new Employee();
+//		arr[2]=new Employee();
+		//or
+		for(int i=0;i<5;i++) {
+			arr[i]=new Employee();
+		}
+		
+//		arr[0].setEmployeeDetails(101,"binu",12300);
+//		arr[1].setEmployeeDetails(102,"siva",98789);
+//		arr[2].setEmployeeDetails(103,"ajith",87678);
+		
+		//or
+		for(int i=0;i<5;i++) {
+			System.out.println("enter the id for index "+i);
+			int id=input.nextInt();
+			System.out.println("enter the name for index "+i);
+			String name=input.next();
+			System.out.println("enter the salary for index "+i);
+			double salary=input.nextDouble();
+			arr[i].setEmployeeDetails(id,name,salary);
+		}
+		
+//		arr[0].getEmployeeDetails();
+//		arr[1].getEmployeeDetails();
+//		arr[2].getEmployeeDetails();
+		//or
+		for(int i=0;i<5;i++) {
+			arr[i].getEmployeeDetails();
+		}
+	}
+}
+class Employee{
+	int emp_id;
+	String emp_name;
+	double emp_salary;
+	
+	
+	public void setEmployeeDetails(int id,String name,double salary) {
+		emp_id=id;
+		emp_name=name;
+		emp_salary=salary;
+	}
+	public void getEmployeeDetails() {
+		System.out.println("emp id :"+emp_id);
+		System.out.println("emp name :"+emp_name);
+		System.out.println("emp salary :"+emp_salary);
+	}
+}
+--------------------------------------------------------------
+
+
+//14/04/26
+
+Constructors
+	
+• In java, Constructor is a special method that is executed automatically whenever an instance of object is created. It is  used to initialize the object and give initial values for object 	attributes. 
+
+Rules for Constructor: 
+	• Constructor has same name as class name.
+	• Constructor do not have return value but can take arguments.
+	• Constructor cannot be abstract, static, final, and synchronized. (Will discuss Later)
+
+There are two types of constructors in Java:
+
+	1. No-argument/default constructor
+	2. Parameterized constructor
+
+Default Constructor
+	• A constructor that has no parameters is known as default constructor. It is either user defined or compiler defined constructor.
+	• If we don’t create any constructor in a class, then compiler creates default constructor for the class and assign default values to attributes .
+	• The user defined default constructor provides user given initial values to attributes of the class  for each instantiation.
+
+package com.oops;
+
+public class ConDemo {
+	
+	public static void main(String[] args) {
+		//def const calling
+		Student1 obj=new Student1();
+		obj.print();
+		
+		//parameterize const calling
+		Student1 obj1=new Student1(101,"appu");
+		obj1.print();
+	}
+}
+class Student1{
+	int id;
+	String name;
+	
+	public  Student1(){//def constructor
+		id=102;
+		name="siva";
+	}
+	public Student1(int id1,String name1) {//para constructor
+		id=id1;
+		name=name1;
+	}
+	
+	public void print() {
+		System.out.println(id);
+		System.out.println(name);
+	}
+}
+
+Parameterized Constructor
+	• A constructor that accepts arguments are known as parameterized constructor. It is use to initialize with your own values.
+	• In parameterized constructor, we must provide initial values of objects as arguments to the constructors.
+
+
+Constructor Overloading
+	• Constructor overloading: More than one constructor with different parameter lists depending 	on the application. Each constructors functions in its own distinct way.
+
+• Example:
+	Employee() { ….} //Default Constructor
+	Employee(int empId) {…..} //One Parameter Constructor
+	Employee(String name, String designation) {….} // Two parameter Constructor
+
+	• They are differentiated by the Java compiler by the number of arguments, order of arguments 	listed and the types of each arguments.
+
+
+package com.oops;
+
+public class ConsOverLoading {
+
+	public static void main(String[] args) {
+		A obj=new A("appu",100);
+		obj.print();
+	}
+}
+class A{
+	int id;
+	String name;
+	double salary;
+	
+//	public A() {//def cons
+//		
+//	}
+	public A(int id1) {//one para cons
+		id=id1;
+	}
+	public A(int id1,String name1) {//two para cons
+		id=id1;
+		name=name1;
+	}
+	public A(String name1,int id1) {//two para cons
+		id=id1;
+		name=name1;
+	}
+	public A(int id1,String name1,double salary1) {//three para cons
+		id=id1;
+		name=name1;
+		salary=salary1;
+	}
+	
+	public void print() {
+		System.out.println("id :"+id);
+		System.out.println("name :"+name);
+		System.out.println("salary :"+salary);
+		
+	}
+}
+
+----------------------------------------------------------------------------
+16/04/26
+
+Static Members
+
+• The static keyword in Java is used for managing memory efficiently with the class instances.
+• We can apply static keyword with variables, methods, blocks and nested classes.
+• The static keyword belongs to the class rather than each instance of the class. The static member is common to the class and it is same for all the instances created for that class. 
+For example, the company name of employees, college name of students, bank name of account holders, etc.
+• Static members can be accessed without objects of a class.
+• Static members can be accessed before any objects of its class are created.
+
+Static Block and Static Variables
+
+Static Block
+• Static block mainly used for to initialize the static variables.
+• It is executed at the time of class is loaded in the memory.
+• In case of multiple static blocks, which will execute in the same order.
+
+Static Variable
+• Static variable also called as class variable.
+• It is common to all the instance of the class.
+• Memory allocation for static variables are happens when the class is loaded in the memory.
+
+Static Methods
+• A static method belongs to the class and common for all the object of a class.
+• It can be invoked without object of class or using class name.
+
+Restrictions:
+• Can access only other static methods and variables.
+• Cannot refer to this or super keyword.
+-------------------------------------------------------------------------------
+20/04/26
+
+Encapsulation
+
+Introduction
+• Encapsulation is a another important concept of Object Oriented Programming.
+• It is the process of binding the data and behaviour into a single unit called class.
+Need of Encapsulation:
+• In this world, many data are sensitive, confidential and personal. Hence privacy is an important threat with respect to every data.
+• Data privacy is achieved with the help of encapsulation concept in Java.
+
+Achieve encapsulation in Java:
+• Encapsulation can be achieved by declaring data in the class members as private.
+• Provide public setter and getter methods to modify and view the private class members. (Good Practice)
+
+Note:
+• Encapsulation prevents the private class members being accessed by external classes and
+methods. Therefore, it is also known as data hiding.
+
+Setter and getter Methods:
+- It is used to update and retrieve the value of variables.
+
+Rules for setter Method:
+• It should be public, if it needs to be accessed from outside.
+• The return-type should be void.
+• The setter method should be prefixed with set.
+• It should take some argument i.e. it should not be no-argument method.
+
+Rules for getter Method:
+• It should be public, if it needs to be accessed from outside
+• The return-type should not be void i.e. according to our requirement we have to give return-type.
+• The getter method should be prefixed with get.
+• It should not take any argument.
+
+Advantages
+• Use only a setter or getter method, you implicitly achieve member of the class that becomes read-only or write-only option.
+• It gives you command over the data. For Example, You can write the logic inside the setter method if you need to set the value of empId 
+based on some criteria.
+• It is a way to achieve data hiding in Java because other class will not be able to access the data
+through the private data members.
+• The encapsulate class is easy to test. So, it is better for unit testing.
+• The standard IDE's are providing the facility to generate the getters and setters method it helps to create encapsulate class easy and fast.
+
+class Employee {       //define Employee class
+	//private data members
+	private int _empId;   
+	private String _empName;
+	//publicgetter and setter methods
+	//Set employee id
+	public void setId(int id) {
+		_empId=id;
+	}
+
+	//Set employee name
+	public void setName(String name) {
+		_empName=name; 
+	}
+	//Get employeeid
+	public int getId() {
+		return _empId;
+	}
+	//Get employee name
+	public String getName(){
+		return _empName;
+	}
+}
+class EmployeeMain {    //Main Class
+	public static void main (String[] args)    {
+		Employee emp= new Employee(); //create instance of Employee class
+		//setting values through setter methods 
+		emp.setId(1001);
+		emp.setName(“Ram Kumar”);
+		//getting values through getter methods
+		System.out.println(“Employee Id: “+getId());
+		System.out.println(“Employee Name: “+getName());
+	}
+}
+-----------------------------------------------------------------------------
+21/04/26
+
+Inheritance
+
+Introduction
+	• Inheritance is one of the important features of Object-Oriented Programming which allows you to create hierarchical classifications.
+	• Inheritance represents the IS-A relationship which is also known as a parent-child relationship.
+	• Inheritance is the process of acquiring the properties from one class (Parent class) to other classes (child classes).
+	• With the help of inheritance, we can create a more general class (Parent class) at the top and it may 
+then be inherited by other more specific classes (Child classes).
+	• Child classes will have the properties of parent class and its own attributes and behaviors that are unique to it as well.
+
+Important Terminologies
+	• Class: Class is a template or blueprint of the objects. It defines the state 	(variables) and behaviour (methods) common to all objects of a certain kind.
+	• Subclass/Child class: Subclass is a class which inherits the other class. It is also called a derived class, extended class, or child class.
+	• Super Class/Parent Class: Super class is the class from where a subclass inherits the features. It is also called a base class or a parent class.
+
+Need
+• Reusability: 
+	It is a mechanism which facilitates you to reuse the fields and methods of the existing class. As the name implies, the child inherits characteristics of the parent.
+• There is less code duplication.
+• Code modification can be done once for all subclasses.
+
+Syntax
+class SubClass-name extends SuperClass-name {
+	//methods and fields of subclass
+}
+• The extends keyword denotes that a subclass is derived from an existing super class. It indicates that you are extending the functionality of an existing class.
+
+----------------------------------------------------------------------
+28/04/26
+
+Types of Inheritance
+
+Below are the types of inheritance.
+	• Single Inheritance
+	• Multilevel Inheritance
+	• Multiple Inheritance
+	• Hierarchical Inheritance
+	• Hybrid Inheritance
+Note:
+	• Java supports Single, Multilevel and Hierarchical inheritance directly, but Multiple and Hybrid inheritance can be achieved through Interfaces.
+
+Single Inheritance
+	 Single inheritance is the concept of deriving the properties and behaviours from single base (parent)
+class
+• Syntax:
+class A{
+….
+….
+}
+class  B extends A{
+….
+….
+}
+
+package com.oops;
+public class InheritanceExp {
+
+	public static void main(String[] args) {
+		Manager obj=new Manager("ram",100,"IT");
+		//		obj.setEmpDetails(100, "ram");
+		//		obj.setManagerdetails("IT");
+		obj.displayEmp();
+		obj.disManager();
+	}
+}
+//single inheritance
+class Employe{//parent class
+	int empid;
+	String name;
+
+	void setEmpDetails(int empid,String name) {
+		this.empid=empid;
+		this.name=name;
+	}
+	void displayEmp()
+	{
+		System.out.println("Name :"+name+"\nEmp id :"+empid);
+	}
+}
+class Manager extends Employe{//child class
+	String dep;
+
+	void setManagerdetails(String dep) {
+		this.dep=dep;
+	}
+	void disManager() {
+		System.out.println("Dep :"+dep);
+	}
+}
+
+Multilevel Inheritance
+
+• In the case of multi-level inheritance, a subclass that is inheriting one parent class will also act as the base class for another class.
+
+ Syntax:
+class A{
+….
+}
+class  B extends A{
+….
+….
+}
+class  C extends B{
+….
+….
+}
+
+class Person {                       
+	String name;
+	int age;
+	//Level 1:Base class
+	void setPersonData(String name, int age){
+		this.name=name;
+		this.age=age;
+	}
+	void displayPersonData() {
+		System.out.println(“Name:”+name);
+		System.out.println(“Age:”+age);
+	}
+}
+class Employee  extends Person{          //Level 2:Base class
+	int empId;
+	void setEmpData(String id){
+		empId=id;
+	}
+	void displayEmpData(){
+		System.out.println(“ID:”+empID);
+	}
+}
+class Manager extends Employee {            
+	String dept;
+	float sal;
+	//child class
+	void setManagerData(String depart, float salary){
+		dept = depart;
+		sal=salary;
+	}
+	void displayManagerData(){
+		System.out.println(“Department:”+dept);
+		System.out.println(“Salary :”+ sal);
+	}
+}
+public class MlevelInherDemo{
+	public static void main(String args[]) {
+		Manager m=new Manager();           //child class object
+		m.setPersonData(“Arun”, 34);
+		m.setEmpData(“M123”);
+		m.setManagerData(“Marketing”,60000);
+		m.displayPersonData();
+		m.displayEmpData();
+		m.displayManagerData();
+	}
+}
+-----------------------------------------------------------------------------
+29/04/26
+Hierarchical Inheritance
+
+• In Hierarchical Inheritance concept, there is one base class for multiple subclasses.
+class A{
+….
+….
+}
+class  B extends A{
+….
+….
+}
+class  C extends A{
+….
+….
+}
+
+
+package com.oops;
+
+public class HerInheritanceDemo {
+
+	public static void main(String[] args) {
+		Batsman virat=new Batsman();
+		virat.setPlayerDetails("virat","india");
+		virat.setBatsmanDetails(198, 200);
+		virat.displayplayerDetails();
+		virat.displayBatsmanDeatils();
+
+		Bowler bumra=new Bowler();
+		bumra.setPlayerDetails("bumra","india");
+		bumra.setBowlingDetails(7, 8);
+		bumra.displayplayerDetails();
+		bumra.displayBowlingDeatils();
+	}
+}
+class CricketPlayer{//parent class
+	String playername;
+	String teamname;
+
+	void setPlayerDetails(String playername,String teamname) {
+		this.playername=playername;
+		this.teamname=teamname;
+	}
+	void displayplayerDetails() {
+		System.out.println("Player Name :"+playername+"\nTeam name :"+teamname);
+	}
+
+}
+class Batsman extends CricketPlayer{
+	int battingavg;
+	int highscr;
+
+	void setBatsmanDetails(int battingavg,int highscr) {
+		this.battingavg=battingavg;
+		this.highscr=highscr;	
+	}
+	void displayBatsmanDeatils() {
+		System.out.println("Batting Avg :"+battingavg+"\nHighScr :"+highscr);
+	}
+
+}
+class Bowler extends CricketPlayer{
+	int wicketavg;
+	int highwicket;
+
+	void setBowlingDetails(int wicketavg,int highwicket) {
+		this.wicketavg=wicketavg;
+		this.highwicket=highwicket;
+	}
+	void displayBowlingDeatils() {
+		System.out.println("Wicket Avg :"+wicketavg+"\nHigh Wicket 		:"+highwicket);
+	}
+}
+
+
+Multiple Inheritance
+
+• Multiple Inheritance concept, there is more than one base classes for a subclass.
+Note:
+• Due to ambiguity issue Java doesn’t support multiple  inheritance through class. 
+• Both multiple and hybrid inheritance supported through interface concept. 
+
+super Keyword
+• The super keyword in Java is a reference variable which is used to refer immediate parent class object.
+• Whenever you create the instance of subclass, an instance of parent class is created implicitly which is referred by super reference variable.
+• Super keyword can be used at variable, method and constructor level.
+• The super keyword is similar to ’this’ keyword.
+
+Difference: super keyword is used to refer the members of super class. But ‘this’ keyword used to refer current class’s instance and static variables.
+
+package com.oops;
+
+public class SuperVarDemo {
+	public static void main(String[] args) {
+		Programmer obj=new Programmer();
+		obj.setData("Arun",111);
+		//obj.display();
+	}
+}
+class ProjectLeader {                  
+	//parent class
+	String proleadName="Ram Kumar";
+	int empId = 1000;
+}
+class Programmer extends ProjectLeader {            
+	String progName;
+	int empId;
+	//child class
+	void setData(String name, int id){   // derived class method
+		progName=name;
+		empId=id;
+	}
+//	void display() {
+//		System.out.println("programmer Name :"+progName+
+//				"\nProgrammer Id :"+empId+
+//				"\nproject lead name"+super.proleadName+
+//				"\nProject lead id :"+super.empId);
+//	}
+}
+
+
+package com.oops;
+
+public class SuperMethodDemo {
+
+	public static void main(String[] args) {
+		Programmer1 obj=new Programmer1();
+		obj.setData("Arun",111);
+		obj.display();
+	}
+}
+class ProjectLeader1 {                  
+	String proleadName="Ram Kumar";
+	int empId = 1000;
+	
+	void display() {
+		System.out.println("\nproject lead name"+proleadName+
+		"\nProject lead id :"+empId);
+	}
+}
+class Programmer1 extends ProjectLeader1 {            
+	String progName;
+	int empId;
+	
+	void setData(String name, int id){   
+		progName=name;
+		empId=id;
+	}
+	void display() {
+		System.out.println("programmer Name :"+progName+
+				"\nProgrammer Id :"+empId);
+		super.display();
+	}
+}
+
+Inheritance and Constructors
+
+• Can Constructors be inherited?– No
+• Reasons: Constructors are special and have same name as class name. So, if constructors were inherited in child class, then child class would contain a parent class constructor which is against the constraint that constructor should have same name as class name.
+• Constructors are invoked in the order of their derivation i.e., first base class then derived class constructor.
+• Constructor of base class with no argument gets automatically called in derived class constructor.
+• But in case of parameterized base class constructor call using super keyword. In this case, Base class constructor call must be the first line in derived class constructor.
+---------------------------------------------------------------------------
+30/04/26
+
+ 
+Polymorphism
+
+Introduction
+
+• Polymorphism is one of the important features of Object-Oriented Programming.
+• Polymorphism can be defined as the ability of an object to take many forms. Simply , polymorphism allows performing the same action in different ways.
+• Example:
+• A person at the same time can have different characteristics. Like a man at the same time is a father, a husband, an employee. So, the same person posse's different behaviour in different situations.
+
+There are two types of polymorphism in java:
+1. Static Polymorphism also known as compile time polymorphism 
+Example :Method Overloading
+
+2. Dynamic Polymorphism also known as runtime polymorphism
+Example: Method Overriding
+
+• When a type of the object is determined at the compile time (by the compiler), it is known as compile time polymorphism or static binding or Early Binding.
+• That means Java would be able to understand which function to be called, at the compile time itself.
+• Example: Method Overloading
+• Method overloading : If the class contains two or more methods having the same name but different arguments / signature, then it is called as method overloading.
+
+The compiler will be able to make the call to a correct method, depending on the actual number of arguments, its datatype and these quence they are passed in.
+
+Example:
+int add(int, int)
+double add(double, double);
+float add(float, int, float);
+
+Note:
+• Because of ambiguity, method overloading is not possible by changing the return type of method only.
+• For Example: intadd(int,int);
+	doubleadd(int,int);
+
+package com.oops;
+
+public class PolymorDemo {
+
+	public static void main(String[] args) {
+//		Cal obj=new Cal();
+//		System.out.println(obj.add(129.68,325.32f));
+	}
+}
+class Cal{
+	public void add(int a) {
+		System.out.println(" add :"+a);
+	}
+	public void add(double a) {
+		System.out.println(" add :"+a);
+	}
+	public void add(int a,int b) {
+		System.out.println(" add1 :"+(a+b));
+	}
+	public void add(double a,int b) {
+		System.out.println(" add2 :"+(a+b));
+	}
+	public double add(double a,double b,double c) {
+		return a+b+c;
+	}
+	public double add(double a,float b) {
+		return a+b;
+	}
+}
+
+package com.oops;
+
+public class MethodOverLoadingSample {
+	public static void main(String[] args) {
+		ClassOne.add(10, 20);
+	}
+}
+class ClassOne{
+	static void add(int a) {
+		System.out.println(" add 1 :"+a);
+	}
+	static void add(int a,int b) {
+		System.out.println(" add 2 :"+(a+b));
+	}
+}
+--------------------------------------------------------------------
+01/05/26
+
+Runtime polymorphism: Method Overriding
+• The process of binding the code associated with the function call during runtime rather than compile  time is known as Runtime Polymorphism or Dynamic Binding or Late Binding.
+• Example: Method Overriding
+• Method Overriding: If subclass (child class) has same name, same parameters and same 	return type as a method in super-class then the method in the subclass is said to override the method in the super-class.
+• In simple words, the function has same name and same signature is known as method overriding.
+• Overridden method in Java application is called and executed at run time only. In method overriding the derived class can give its own specific implementation to an inherited method.
+• In this process, the overridden method would be called through the reference variable of a super class. The determination of the method, which is to be called, is based on the object, being referred to by the reference variable (upcasting). That’s why it is also called as Dynamic Method Dispatch.
+• Upcasting means assigning child class reference to parent class reference.
+Note:
+
+• They must have the same argument list.
+• They must have the same return type.
+• Constructors cannot be overridden.
+
+class A {
+}
+class B extends A {
+}
+class Demo {    
+	public static void main(String[] args) {
+	A a= new B();      //upcasting      
+	}
+}
+
+final Keyword
+
+• final keyword can be used in context of behavioral restriction on
+	– Variables: When a variable is made as final then it behaves as constant
+	– Methods: If a method is set as final then it cannot be overridden by the sub classes. It restricts overriding.
+	– Classes: When a class is set as final then it prevents from being inherited.
+
+----------------------------------------------------------------------------------
+02-05-26
+
+Abstraction
+
+Introduction
+	• Abstraction is the one of the important feature of Object-Oriented Programming.
+	• It is a process of hiding the implementation details and showing only the functionality to the user.
+		– In other words, it shows only essential things to the user and hides the other internal details.
+		– For Example, when you send an email to someone you just click send and you get the success message.
+		– What happens when you click send?
+		– How is data transmitted over network to the recipient?– All these are hidden from you (because it is irrelevant to you).
+Abstract Class
+• An abstract class is are stricted class, that cannot be used to create objects. That means we are forcing the programmer to inherit the abstract class and use it, but not directly.
+• A class which is declared with abstract keyword, becomes an abstract class. Abstract class can have abstract methods and as well as concrete methods.
+
+
+Public abstract class Shape {
+void draw() {
+	System.out.println("drawing...");       //Concrete Method
+}
+public abstract void area();                     //Abstract Methods
+	public abstract void perimeter();
+}
+
+Note: abstract method is a method which will not have the body, where as concrete methods must have the body.
+
+Abstract Class: Need
+
+• Abstract classes are used to define generic types of behaviours at the top of an object-oriented programming class hierarchy and use its subclasses to provide 	implementation details of the abstract class. This feature helps to bring complete visualization of your application.
+• The subclasses extend the same Abstract class and provide different implementations for the abstract methods.
+
+Note:
+• Any class that extends an abstract class must implement all the abstract methods declared by the super class.
+
+Points to remember:
+• For abstract class we cannot create object. (Why?)
+• Abstract class can contain both abstract and concrete methods.
+• It can have constructors and static methods also.
+• It can have final methods, which will force the programmer not to change the body of 	the methods in the subclass.
+• It contain abstract methods that must be implemented later by any non abstract subclasses.
+
+package com.oopsAbstr;
+
+public class AbstractionDemo {
+
+	public static void main(String[] args) {
+	
+		Rec rec=new Rec(10,5);
+//		rec.draw();
+//		rec.area();
+//		rec.perimeter();
+//		
+//		Cir cir=new Cir(3);
+//		cir.draw();
+//		cir.area();
+//		cir.perimeter();
+
+	}
+}
+abstract class Shape{
+	void draw() {
+		System.out.println("Shape Draw");
+	}
+	abstract void area();
+	abstract void perimeter();
+}
+class Rec extends Shape{
+	int l;
+	int b;
+	public Rec(int l,int b) {
+		this.l=l;
+		this.b=b;
+	}
+	@Override
+	void area() {
+		System.out.println("Rec Area ;"+(l*b));
+	}
+	@Override
+	void perimeter() {
+		System.out.println("Rec Perimeter :"+(2*(l+b)));
+	}
+}
+class Cir extends Shape{
+	int r;
+	public Cir(int r) {
+		this.r=r;
+	}
+	@Override
+	void area() {
+		System.out.println("Cir Area :"+(3.14*r*r));
+	}
+	@Override
+	void perimeter() {
+		System.out.println("Cir Perimeter :"+(2*3.14*r));
+	}
+	
+}
+-----------------------------------------------------------------------------
+05/05/26
+
+Interface
+Introduction
+• Another way to achieve Abstraction in java is interface. Unlike abstract class an interface is used for full  abstraction.
+• Interface is a reference type in java. It is very similar to class, but it is not a class. In interface all the variables declared in final static variables by default and methods are public abstract by default.
+• From Java 8 onwards interface also support default methods and static methods, which may have implementation details.
+• Default methods were introduced to provide backward compatibility for old interfaces so that they can have new methods without effecting existing code.
+• Syntax:
+interface interfaceName { ... }
+• It is used to achieve full abstraction(100%).
+• Multiple Inheritance can be achieved with interfaces, because the class can implement multiple interfaces.
+
+Note:
+• We cannot create object for interface.
+• The class which is implementing the interface, must define all the methods of interface. If it fail stode fine any method of the interface, the class becomes abstract class. if one of the methods is a default method, it needs not be redefined.
+
+• Interface can extend one or more other interface.
+• Interface cannot implement a class.
+• Interface can be nested inside another interface.
+• An interface cannot contain a constructor. (Why?)
+• When a class implements an interface, it is like signing an agreement. The agreement indicates that
+the class will implement the methods defined by the interface.
+
+package com.oopsAbstr;
+
+public class InterfaceSample1 {
+
+	public static void main(String[] args) {
+		A a=new A();
+		a.display();
+	}
+}
+abstract class Sample{
+	int b=20;
+
+}
+class Sample1 extends Sample{
+	void print() {
+		b=30;
+	}
+}
+interface Demo{
+	static final int a=10;
+	public abstract	void display();
+}
+class A implements Demo{
+	@Override
+	public void display() {
+		//a=20;
+		System.out.println(a);
+	}
+}
+
+Points to remember:
+
+• Java does not support multiple inheritance(a class can only inherit from only one class).But it can be  achieved with interfaces, because the class can implement multiple interfaces.
+• Two Possible situation to achieve multiple inheritance using interface
+
+
+package com.oopsAbstr;
+
+public class MultipleInheritanceDemo {
+
+	public static void main(String[] args) {
+		Child child=new Child();
+		child.showFather();
+		child.showMother();
+	}
+}
+//interface Father{
+//	void showFather();
+//}
+//interface Mother{
+//	void showMother();
+//}
+//class Child implements Father,Mother{
+//	@Override
+//	public void showMother() {
+//		System.out.println("Love");
+//	}
+//	@Override
+//	public void showFather() {
+//		System.out.println("Care");
+//	}
+//}
+
+
+package com.oopsAbstr;
+
+public class HybridInheritanceDemo {
+
+	public static void main(String[] args) {
+		Child child=new Child();
+		child.Care();
+		child.love();
+		child.House();
+	}
+}
+interface GDFather{
+	void House();
+}
+interface Father extends GDFather{
+	void Care();
+}
+interface Mother{
+	void love();
+}
+class Child implements Mother,Father{
+	@Override
+	public void House() {
+		System.out.println("House");
+	}
+	@Override
+	public void Care() {
+		System.out.println("Care");
+	}
+	@Override
+	public void love() {
+		System.out.println("Love");
+	}
+}
+
+--------------------------------------------------------------------------------
+06/05/26
+
+1. Aggregation
+	- Aggregation is a "HAS-A" relationship where one object contains another object, but both can exist independently.
+
+Example:
+	- A Department has Teachers
+	- If the department is deleted, teachers can still exist.
+	- It is a weak relationship.
+
+package com.oopsAbstr;
+
+public class AggrecationDemo {
+
+	public static void main(String[] args) {
+		Teacher ram=new Teacher("Ram");
+//		Dept d=new Dept("IT",ram);
+//		d.print();
+	}
+}
+class Teacher{
+	String name;
+	Teacher(String name){
+		this.name=name;
+	}
+	void display() {
+		System.out.println("Teacher Name :"+name);
+	}
+}
+class Dept{
+	String name;
+	Teacher teacher;
+	
+	Dept(String name,Teacher teacher){
+		this.name=name;
+		this.teacher=teacher;
+	}
+	public void print() {
+		System.out.println("Dept Name :"+name);
+		teacher.display();
+	}
+	
+}
+
+2.Composition 
+
+Example — Human and Heart
+	- Composition is a strong HAS-A relationship.
+	
+	- A Heart cannot exist meaningfully without a Human object in this example.
+
+So:
+	- Human has a Heart
+	- Heart is created inside Human
+	- If Human is destroyed, Heart also goes away
+
+
+package com.oopsAbstr;
+
+public class CompsDemo {
+
+	public static void main(String[] args) {
+		Human human=new Human();
+		human.alive();
+	}
+}
+class Heart{
+	void beat() {
+		System.out.println("Heart id beating!!!...");
+	}
+}
+class Human{
+	Heart heart;
+	
+	Human(){
+		heart =new Heart();
+	}
+	public void alive() {
+		System.out.println("Human body");
+		heart.beat();
+	}
+}

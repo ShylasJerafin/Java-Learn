@@ -1,0 +1,145 @@
+Collections:
+-----------
+ - collection is a framework.
+ - collection is a interface.
+ - collection is a single object contains group of objects.
+ - can perform add,remove,get,modify... and so on operations.
+ - each object is called element of the collection object.
+
+Framework:
+ - it represents the collection of classes and interfaces.
+ - it is a readymade architecture.
+ 
+Advantages:
+ - We can store both homogeneous and heterogeneous objects.
+[Note: Homogeneous - same type of object - Heterogeneous - differenet type of object]
+ - Size is growable.
+ - We can store only objects. [Cannot store primitive type values]
+ 
+Types of Object:
+ - Homogeneous Object
+ - Heterogeneous Object
+
+Homogeneous Object:
+ - similar type of objects stored in single collection object
+ - Ex: ArrayList<Integer> al = new ArrayList<>(); [Have to mention the generic]
+ 
+Heterogeneous Object:
+ - Different type of object stored in a single collection object.
+ - Ex: ArrayList al = new ArrayList();
+ 
+List:
+-----
+-----
+ - ArrayList, LinkedList, Vector, Stack
+ 
+ArrayList:
+---------
+ - is a sub class of List Interface.
+ - It belongs to java.util package
+ - Maintains insertion order
+ - Allows duplicate elements and Null 
+ - can store both homogeneous and heterogeneous objects.
+ - Data structure is growable in size
+ - it follows dynamic Array data structure.
+ - Default capacity = 10 (10 x 1.5 =15)
+ - ArrayList also implemeted from RandomAccess, Cloneable, Serializable
+ - used when perform operations like get/retrive, don't used when insertion/deletion
+ - objects are stored in continuos memory.
+ - If our frequent operation is insertion/deletion arraylist is not recommended
+ - If our frequent operation is fetching data from the object. then arraylist is best choice to use.
+
+LinkedList:
+----------
+ - is a sub class of List Interface.
+ - Maintains insertion order
+ - Allows duplicate elements and Null
+ - Objects are not stored in a continuos memory
+ - it follows doubly linked list data structure
+ - If our frequent operation is insertion/deletion LinkedList is best to use
+ - If our frequent operation is fetching data from the object. then LinkedList is not recommended
+ - There is no default capacity.
+ - can store both homogeneous and heterogeneous objects.
+
+Vector:
+-------
+- is a sub class of List Interface
+- follows dynamic array data structure or growable size
+- Allows duplicate elements and Null 
+- can store both homogeneous and heterogeneous objects.
+- Maintains insertion order
+- Methods are synchronized. So it is Thread-safe (synchronized)
+- Slower than ArrayList due to synchronization
+- default capacity = 10 -> new capacity = old capacity * 2
+
+Stack:
+------
+- is a sub class of Vector Class
+- Allows duplicate elements and Null 
+- can store both homogeneous and heterogeneous objects.
+- Maintains insertion order
+- default capacity = 10 -> new capacity = old capacity * 2
+- follows LIFO -- Last in First Out
+ 
+Deque:
+------
+- Deque stands for Double-Ended Queue. It allows you to insert and remove elements from both the front and the rear.
+- Deque is an interface. LinkedList is a class that implements the Deque interface.
+- A Deque can be used as a Queue (FIFO) or a Stack (LIFO).
+
+  Double-Ended Queue
+Front  10  20  30  Rear
+
+Insert or remove elements at either end.
+
+Important Methods in Deque
+1. peek() vs poll()
+- peek() reads the front element; it does not remove it.
+- poll() reads and removes the front element.
+- If the deque is empty, both return null.
+2. removeFirst() vs poll()
+- removeFirst() throws NoSuchElementException if the deque is empty.
+- poll() returns null if the deque is empty.
+3. push() vs offer()
+- push() inserts at the front.
+- offer() inserts at the rear.
+4. pop() vs poll()
+Both remove from the front, but pop() throws NoSuchElementException on an empty deque, whereas poll() returns null.
+
+As a Queue — FIFO
+First In, First Out
+dq.offer(10);
+dq.offer(20);
+dq.offer(30);
+dq.poll(); // Removes 10
+
+
+As a Stack — LIFO
+Last In, First Out
+dq.push(10);
+dq.push(20);
+dq.push(30);
+dq.pop(); // Removes 30
+
+
+Remember: 
+Deque supports operations at both ends. LinkedList is one implementation of Deque, but ArrayDeque is another common choice when you need a deque without linked-list nodes.
+
+Collections Class:
+------------------
+ - Collections class present in java.util package
+ - Collections is called as utility class (it has only static methods)
+ 
+Methods:
+ sort(list)
+ sort(list,comparator)
+ reverse(list)
+ shuffle(list)
+ swap(list,index,index)
+ min(list)
+ max(list)
+ fill(list,obj)
+ copy(destination,source)
+ frequency(collection,obj)
+ replaceAll(list,oldvalue,newvalue)
+ 

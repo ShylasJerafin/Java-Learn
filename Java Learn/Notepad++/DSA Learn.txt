@@ -1,0 +1,66 @@
+Stack - first in last out - LIFO
+Queue - First in first out
+Linked List - previous-next
+ - Single
+ - Double
+ - Circular
+Tree - social media(insta)
+Graph - Google maps
+Hashing
+
+sorting
+1.Internal Sorting - small amt of data
+2.External Sorting - massive amt of data
+
+Bubble Sort
+ - first bigger number to sort
+ - then to next bigger value
+ - Time complexity (n2)
+_________________________________________________________________________________________________________________________________
+
+Introduction:
+ - how to store the data efficiently and save memory.
+ - if you're simply dump the data, you're expanding the memory and if we want to search something in the data, will be difficult. 
+   That's why storing the data efficiently is important.
+ - That's where Data structure comes in
+ 
+Data Structure:
+ - is a way to organize and store data efficiently.
+ - Efficient means 1.Performance 2.Memory
+ 
+Data & Datatypes:
+ - Data Collection - Data Processing - Data output - Data storage
+ - To store the data, we use variables - every variable is different type based on the data (int, char, string)
+int - 1,4,6,7
+double - 2.5,12.4,6.7
+String - "Jera", "Shylas"
+ - if you want to store a complex datatype - like if you want to represent the phone or a person 
+ - Ex: Phone -> Name, Model no, Brand, Configuration all are data.
+ - if you want represent a physical thing in the virtual world we use object there
+Ex: in C use structure and OOP languages we use class, here we use different variable with primitive type and 
+the class itself is a complex datatype (or) user-defined datatype - because system is not giving we are defining our own type.
+
+Abstract Datatype:
+ - Ex: if we take int DT - it do several operations include Addition, Subtract, Divide, Multiply
+ - String means - concat, split like that
+ - In the same way, if we creating our own datatype , this is will have data and have to perform operations
+ - so, when we have a concept and associated operations to it and with data  and which we call them as Abstract datatype
+ * We can create our own DT , which is the concept, to add data inside that, and also need to specify the operations we can perform 
+that is abstract DT.
+
+Arrays
+ - is a collection of values of a same DT.
+ int num[]= {1,2,3,4,5};
+ index value 0,1,2,3,4
+ - If we want to insert a new value in the end means that's easy but in the middle and the array length is also large it is difficult 
+	and it also consume a lot of time same goes for deletion - we have to replace all the values that takes time
+	[When we write a code think about the number of steps our code takes because that times our time complexity]
+
+
+The steps we write to solve a program is called Algorithms. How to choose best one?
+	- When we run the application, the applications should be - take Less Memory or use Less Time
+
+We we develop a program - first it has to work - then think to optimize it 
+	- we can optimize it in 2 ways
+		1.Space Complexity(Less Memory)
+		2.Time Complexity(Less Time)

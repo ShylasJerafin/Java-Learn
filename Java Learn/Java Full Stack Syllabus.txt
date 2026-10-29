@@ -1,0 +1,231 @@
+Java Full Stack Development – Complete Structured Syllabus
+
+1️⃣ Java Fundamentals
+
+Introduction to Java
+•		What is Java?
+•	Java Features
+•	C vs C++ vs Java
+•	JDK, JRE, JVM Architecture
+Core Language Basics
+•	Class and Object
+•	Variables: Declaration & Types
+•	Methods: Definition & Types
+•	Packages
+•	Access Specifiers
+Keywords
+•	class, static, new
+•	this keyword
+•	super keyword
+•	final keyword
+•	volatile keyword
+•	transient keyword
+Control Statements
+•	Conditional Statements
+•	Looping Statements
+
+2️⃣ Object-Oriented Programming (OOP)
+•		Encapsulation
+•	Inheritance
+•	Polymorphism
+•	Abstraction
+SOLID Principles
+•	Single Responsibility Principle (SRP)
+•	Open/Closed Principle (OCP)
+•	Liskov Substitution Principle (LSP)
+•	Interface Segregation Principle (ISP)
+•	Dependency Inversion Principle (DIP)
+
+3️⃣ Core Java Advanced Topics
+•		Object Class & Methods
+•	String Handling
+•	Exception Handling
+•	File Handling
+•	Multithreading
+•	Synchronization
+
+4️⃣ Collections & Utilities
+•		Collection Framework
+•	Collections Utility Class
+•	Arrays Utility Class
+•	Comparable & Comparator Interfaces
+•	Marker Interfaces
+
+5️⃣ Design Patterns
+Creational Design Patterns
+•		Singleton Pattern
+•	Factory Pattern
+Structural Design Patterns
+•	Facade Pattern
+Behavioural Design Patterns
+•	Observer Pattern
+J2EE Design Patterns
+•	IOC Pattern
+•	MVC Pattern
+
+6️⃣ Java 8 Features
+•		Functional Interfaces
+•	Lambda Expressions
+•	Streams API
+•	Method References
+•	Constructor References
+
+7️⃣ JDBC & Java EE Basics
+JDBC API
+•	JDBC Architecture
+•	Connecting Java Application with Database
+•	CRUD Operations using JDBC
+JSP Basics
+•	Introduction to JSP
+•	JSP Architecture
+•	JSP Life Cycle
+•	JSP Directives
+•	Scriptlets, Expressions & Declarations
+•	JSP Implicit Objects
+Servlets Basics
+•	Introduction to Servlets
+•	Servlet Architecture
+•	Servlet Life Cycle
+•	Handling Requests & Responses
+•	Session Management Basics.
+
+8️⃣ Frontend Basics (Web Fundamentals)
+HTML Basics
+•	Introduction to HTML
+•	HTML Structure & Elements
+•	Headings, Paragraphs, Lists
+•	Tables & Forms
+•	Input Types & Attributes
+•	Semantic HTML
+CSS Basics
+•	Introduction to CSS
+•	CSS Selectors
+•	Colors, Fonts & Text Styling
+•	Box Model
+•	Layout Basics (Flexbox & Grid – Intro)
+•	Responsive Design Basics
+JavaScript Basics
+•	Introduction to JavaScript
+•	Variables & Data Types
+•	Operators
+•	Conditional Statements
+•	Looping Statements
+•	Functions
+•	DOM Manipulation Basics
+•	Events Handling
+
+9️⃣ Spring Framework Core
+Spring Introduction
+•	Spring Documentation
+•	Prerequisites for Spring
+•	Why Spring?
+•	Tight Coupling vs Loose Coupling
+Core Concepts
+•	Inversion of Control (IoC)
+•	Dependency Injection (DI)
+Spring Modules Overview
+•	Core, AOP, Data, MVC
+Spring Configuration
+•	XML-Based Configuration
+•	Java-Based Configuration
+•	Annotations
+Bean Scopes
+•	Singleton
+•	Prototype
+•	Request
+•	Session
+•	Application
+ 
+🔟 Spring Boot
+Spring Boot Basics
+•	Introduction to Spring Boot
+•	Advantages of Spring Boot
+•	Spring vs Spring Boot
+•	Spring Initializer
+•	Auto Configuration
+Dependency Injection
+•	Auto wiring
+•	@Primary and @Qualifier
+•	Stereotype Annotations
+•	Field, Constructor & Setter Injection
+
+1️⃣1️⃣ Spring MVC & REST API
+Web Services
+•	SOAP Web Services
+•	RESTful Web Services
+•	SOAP vs REST
+Spring Boot REST API
+•	REST Principles & Best Practices
+•	HTTP Methods (GET, POST, PUT, DELETE)
+•	Idempotent Methods
+•	Controller, Service & Repository Layers
+•	API Testing using Postman
+ 
+1️⃣2️⃣ Spring Data JPA
+•	Introduction to JPA
+•	Entity Mapping
+•	Repository Pattern
+•	CRUD Operations
+•	Database Integration
+ 
+1️⃣3️⃣ Spring Security
+•	Spring Security Basics
+•	Securing REST APIs
+•	Authentication & Authorization
+•	JWT Token Based Security
+
+1️⃣4️⃣ Microservices Architecture (Advanced)
+•	Introduction to Microservices
+•	Monolithic vs Microservices
+•	Benefits & Challenges
+Spring Cloud
+•	Eureka (Service Discovery)
+•	Load Balancing
+•	Spring Cloud Config
+•	Spring Cloud Gateway (API Gateway)
+•	Feign Client
+ 
+1️⃣5️⃣ Monitoring & Logging
+Spring Boot Actuator
+•	Health & Metrics Monitoring
+Log4j
+•	Logging Levels
+•	Log Configuration
+•	Log Rotation
+AWS S3 Integration
+•	AWS SDK for Java
+•	Uploading Logs to S3
+ 
+1️⃣6️⃣ Complete Project
+•		End-to-End Spring Boot REST API Project
+•	Database Integration
+•	Security Implementation
+•	Microservices Development
+ 
+1️⃣7️⃣ Complete Project
+•		End-to-End Spring Boot REST API Project
+•	Database Integration
+•	Security Implementation
+•	Microservices Deployment
+•	AWS Deployment
+ 
+🎁 Bonus Topics (Industry Concepts)
+
+Cloud & DevOps
+•	Cloud Computing Concepts
+•	Docker
+•	Kubernetes
+AWS Core Services
+•	Introduction to Cloud Computing
+•	AWS Overview: AWS Services: EC2 / RDS / S3 / IAM
+Security Standards
+•	JWT
+•	OAuth 2.0
+•	OpenID Connect
+Architecture & Tools
+•	API Gateway Concepts
+•	CI/CD Overview
+•	Git & GitHub
+
+
+

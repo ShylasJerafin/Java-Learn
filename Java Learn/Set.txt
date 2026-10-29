@@ -1,0 +1,209 @@
+Set 
+-------------
+ -> Set interface is part of the collection framework 
+ -> it is present in java.util
+ -> used to store a collection of unique elements (no duplicates allowed). 
+ 
+
+| Feature            | Description                                                 |
+| ------------------ | ----------------------------------------------------------- |
+| Duplicate elements |   Not allowed                                               |
+| Null elements      |   Allowed (but only one)                                    |
+| Order              |   Depends on implementation                                 |
+| Index-based access |   Not supported                                             |
+| Thread-safe        |   Not synchronized                                          |
+| Performance        | Depends on implementation (HashSet, LinkedHashSet, TreeSet) |
+
+
+Methods:
+--------
+
+| Method                 | Description                         |
+| ---------------------- | ----------------------------------- |
+|  add(E e)              | Adds element if not already present |
+|  addAll(Collection c)  | Adds all unique elements            |
+|  remove(Object o)      | Removes element                     |
+|  contains(Object o)    | Checks existence                    |
+|  size()                | Returns number of elements          |
+|  clear()               | Removes all                         |
+|  isEmpty()             | Checks if empty                     |
+|  iterator()            | Returns iterator                    |
+|  toArray()             | Converts to array                   |
+
+
+ 
+ HashSet
+ ----------------
+ 
+ -> HashSet is an sub clases of Set interface 
+ -> its Not  Maintained insertion Order
+ -> Allows Hetero and homo geneous Objects 
+ -> HashSet does not allow duplicat Elements
+ -> only one null key are allowed
+ 
+ 
+ 
+
+
+ 1,2,3,4,5
+1=present 
+
+
+
+Internal Structure:
+
+HashSet internally uses a HashMap where:
+
+Each element of the set is stored as a key in the HashMap
+
+The value for each key is a dummy constant object (usually PRESENT)
+
+example:
+
+private static final Object PRESENT = new Object();
+
+private transient HashMap<E,Object> map;
+
+public boolean add(E e)
+{
+    return map.put(e, PRESENT) == null;
+}
+
+Constructors:
+-------------
+HashSet<Integer> set1 = new HashSet<>();                // default
+HashSet<Integer> set2 = new HashSet<>(100);             // with initial capacity
+HashSet<Integer> set3 = new HashSet<>(100, 0.75f);      // with load factor
+HashSet<Integer> set4 = new HashSet<>(anotherCollection);
+
+
+
+
+When to Use HashSet:
+----------------------------
+   -> Need unique elements
+   -> Don’t care about insertion order
+   -> Want fast performance for add, remove, and lookup.
+   
+   
+   
+   
+   
+   LinkedHashSet 
+   -------------------------------------------------------------
+
+
+LinkedHashSet:
+--------------
+LinkedHashSet is a Set implementation that maintains insertion order of elements.
+It combines the hashing mechanism of HashSet (for fast access) and 
+the linked list mechanism (for maintaining order).
+
+Present in java.util package.
+
+Introduced in JDK 1.4.
+
+Internal Structure:
+-------------------
+LinkedHashSet = HashSet + LinkedHashMap
+
+Internally uses a LinkedHashMap instead of HashMap.
+
+Each element is stored as a key in the LinkedHashMap.
+
+The values are dummy constants (just like HashSet uses PRESENT).
+
+The LinkedHashMap maintains a doubly-linked list of entries to preserve insertion order.
+
+HashSet  → HashMap
+LinkedHashSet → LinkedHashMap
+
+| Feature      | Description                                           |
+| ------------ | ----------------------------------------------------- |
+| Duplicates   |  Not allowed                                          |
+| Null element |  Allowed (only one)                                   |
+| Order        |  Maintains **insertion order**                        |
+| Backed by    | LinkedHashMap                                         |
+| Thread-safe  |  Not synchronized                                     |
+| Performance  | Slightly slower than HashSet (because of linked list) |
+
+Constructors:
+-------------
+LinkedHashSet<E> lhs = new LinkedHashSet<>();
+LinkedHashSet<E> lhs = new LinkedHashSet<>(initialCapacity);
+LinkedHashSet<E> lhs = new LinkedHashSet<>(initialCapacity, loadFactor);
+LinkedHashSet<E> lhs = new LinkedHashSet<>(anotherCollection);
+  
+  
+  
+  Tree Set 
+  -------------------------------------
+  TreeSet:
+--------
+TreeSet is a SortedSet implementation in Java that stores unique elements in sorted order.
+
+It uses a balanced tree data structure internally specifically a Red-Black Tree.
+
+Belongs to the package java.util
+
+Introduced in JDK 1.2.
+
+| Feature       | Description                                              |
+| ------------- | -------------------------------------------------------- |
+| Duplicates    |   Not allowed                                            |
+| Null elements |   Not allowed (throws  NullPointerException  in Java 7+) |
+| Order         |   Sorted (ascending by default)                          |
+| Underlying DS |   TreeMap   (Red-Black Tree)                             |
+| Thread-safe   |   Not synchronized                                       |
+| Comparator    | Optional (for custom sorting)                            |
+
+Internal Working:
+-----------------
+1. Natural ordering (Comparable)
+2. Custom ordering (Comparator)
+
+Internal Red-Black Tree Mechanism (Simplified):
+------------------------------------------------
+TreeSet stores elements in a self-balancing binary search tree.
+
+When you insert or remove, the tree automatically balances itself.
+
+This keeps operations like add(), remove(), and contains() efficient (O(log n)).
+
+Constructors:
+-------------
+TreeSet<E> ts = new TreeSet<>();                  // Natural ordering
+TreeSet<E> ts = new TreeSet<>(Comparator);        // Custom order
+TreeSet<E> ts = new TreeSet<>(Collection c);      // From another collection
+TreeSet<E> ts = new TreeSet<>(SortedSet s);       // From another sorted set
+
+Important Methods: 
+------------------
+| Method                 | Description                  |
+| ---------------------- | ---------------------------- |
+|  add(E e)              | Adds element in sorted order |
+|  remove(Object o)      | Removes the element          |
+|  contains(Object o)    | Checks existence             |
+|  size()                | Number of elements           |
+|  isEmpty()             | Checks if empty              |
+|  first()               | Returns the lowest element   |
+|  last()                | Returns the highest element  |
+|  higher(E e)           | Element > given element      |
+|  lower(E e)            | Element < given element      |
+|  ceiling(E e)          | Element ≥ given element      |
+|  floor(E e)            | Element ≤ given element      |
+|  headSet(E to)         | Elements < to                |
+|  tailSet(E from)       | Elements ≥ from              |
+|  subSet(E from, E to)  | Elements between range       |
+|  iterator()            | Iterates in ascending order  |
+|  descendingIterator()  | Iterates in descending order |
+
+
+When to Use TreeSet:
+--------------------
+
+Need unique elements
+
+Need elements in sorted order
+
+Don’t need fast (O(1)) operations like HashSet

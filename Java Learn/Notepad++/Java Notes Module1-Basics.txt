@@ -1,0 +1,341 @@
+1)Datatypes
+- is used to specifies the size and value
+x)Primitive
+1.Numerical -> i.)Integer - byte, short, int, long -> ii.)Decimal - float, double
+2.Non-Numerical - Char, Boolean
+xx)Non Primitive - Array, String, Interface, Class
+
+2)Variables:
+- is a token/container used to hold the value (or) name of the memory location.
+Types
+Instance Variables
+- When a value in an object varies between Object to Object is known Instance variable
+- This is created when an object is created and destroyed during object destruction.
+- The scope of the instance variable is scope of the object
+- Also known as attributes or object level variable
+- It is declared inside the class and outside the method and block
+- It is directly called inside the Instance variable and need object reference to call inside the static method
+
+Static Variables
+Local Variables
+
+3)Method
+- is a named block of code and it is used perform a specific task.
+- Whenever there is a need to write a same code again and again, we can write it inside a method and reuse it whenever needed.
+Types
+- Pre-defined, User-defined || Static method, Non-Static method 
+- without parameter and return type, without parameter but with return type, With parameter and return type, with parameter and without return type
+- void disp(){}, int disp(){return int;}, String disp(String name){return name;}, void disp(int name){}
+
+4)Switch:
+- Expression must be byte, short, int, char, String and enums
+
+5)Looping Statements
+- Looping statements are used to execute the block of code repeatedly until a specific condition was satisfied.
+- In Java, we have the following looping statements -> while, do while, for, for each and nested loop
+
+while:- It is used to repeated the block of code. It is preferable while we do not know the exact no. of iterations of the loop.
+do-while:- It first run the loop once then check for the condition and it is also known as exit-controlled loop
+for:- whenever we know the exact no. of iterations loop through the block of code, we use for instead of while.
+nested:- A loop inside another loop is known as nested loop. It contains inner and outer loop. when the outer loop executes once, the inner loop executes completely.
+
+6)Type Casting
+- The process of converting one datatype into another is called type-casting.
+- Two Types - 1.Implicit Casting(Widening), 2.Explicit Casting(Narrowing)
+
+Widening:
+- converting a smaller datatype into larger one
+- No data loss
+- Automatically done by java itself
+- Safe conversion
+
+Narrowing
+- converting a larger datatype into smaller one
+- Possible data loss
+- Done manually by programmer
+- Risky Conversion
+
+7)Operators
+- Arithmetic - +,-,*,/,%
+- Assignment - +=,-=,*=,/=,%=
+- Relational - >,<,==,!=,>=,<=
+- Logical - &&,||,!
+- Unary - it is perform by single operand (++,--), cannot be perform by constant values(10++)
+- Ternary - (a>b)?a:b
+
+8)Packages
+- Package in Java is a namespace used to organize the classes and interfaces in a hierarchical structure. It is like a folder in a file system.
+Two Types:
+- Built-in packages or Predefined(provided by Java itself)
+- User-defined packages(These are created by programmers)
+
+Exception Handling
+- try: contains the code that may cause an exception. You cannot write alone. A try must be followed by: catch or finally. One try can have multiple catch blocks
+- catch: is used to handle an exception, contains information about the exception.
+- finally: contains code that generally needs to execute whether an exception occurs or not.
+
+	 Object
+	    |
+	Throwable
+		|
++----------------+
+
+ |      	 	 |
+Error      	Exception
+                 |
+		+---------+----------+
+
+	   | 		 			|
+
+	Runtime 				Other
+	Exception  			Exceptions
+
+		|
+
+	+-----+-------+
+
+	|			  |
+
+Arithmetic NullPointer
+Exception  Exception
+
+- throw: is used to manually create and throw an exception
+- throws: is used in a method declaration.
+
+| throw 								| throws 						|
+| ------------------------------------- | ------------------------------- |
+| Used to actually throw exception 		| Declares possible exceptions |
+| Used inside method 		   			| Used in method declaration |
+| Throws one exception object at a time | Can declare multiple exceptions |
+| throw new Exception() 				| method() throws Exception |
+
+Arrays
+
+In Java, arrays can be categorized as:
+Technically, Java does not have a special built-in "2D array" or "3D array" type.
+A 2D array is essentially an array of arrays, and a 3D array is an array containing arrays of arrays.
+A jagged array is an array where each row can have a different number of columns.
+
+
+
+IDE - Integrated Development Environment
+ - An IDE is a software application that provides all the tools you need to write, compile, run, debug, and manage Java programs in one place.
+
+IDE Workflow
+
+Write Java Code
+    ↓
+IDE detects errors
+    ↓
+Compile
+    ↓
+Run
+    ↓
+See Output
+    ↓
+Debug if necessary
+
+
+Important features of a Java IDE
+
+1.Code Editor
+2.Auto-Completion
+3.Error Detection
+4.Compile and Run
+5.Debugging
+6.Project Management
+7.Refactoring
+
+| JDK                                   | IDE                                                 |
+| ------------------------------------- | --------------------------------------------------- |
+| Java Development Kit                  | Integrated Development Environment                  |
+| Required to develop Java applications | Provides a convenient development environment       |
+| Contains Java development tools       | Provides editor, debugger, project management, etc. |
+| Provides `javac`                      | Uses the JDK to compile/run Java                    |
+| Example: JDK 21, JDK 25               | Example: VS Code, Eclipse, IntelliJ IDEA            |
+
+
+Compiler:
+- A compiler is a software program that converts human-readable source code into a form that the computer/JVM can execute.
+- In Java, the compiler is called javac.
+
+Simple Program:
+
+class Demo {
+
+  public static void main(String[] args) {
+      System.out.println("Hello Java");
+  }
+}
+
+This is called source code.
+We save it as Demo.java
+Then the java compiler - javac Demo.java
+converts it into: - Demo.class
+The .class file contains Java bytecode.
+
+Demo.java
+ |
+ |  javac (Java Compiler)
+ ↓
+Demo.class
+ |
+ |  JVM
+ ↓
+Program Output
+
+
+What exactly does the Java compiler do?
+
+The compiler performs several important checks.
+1. Syntax checking - System.out.println("Hello") - You forgot ;
+2. Type checking - int age = "Twenty"; - int cannot store String
+3. Converts source code to bytecode - The compiler converts: .java into .class - The .class file contains bytecode.
+
+
+Compiler vs JVM
+
+| Compiler                    | JVM                      |
+| --------------------------- | ------------------------ |
+| `javac`                     | Java Virtual Machine     |
+| Takes `.java` source code   | Takes `.class` bytecode  |
+| Produces `.class` bytecode  | Executes bytecode        |
+| Performs compilation checks | Runs the program         |
+| Happens before execution    | Happens during execution |
+
+
+.java
+↓
+javac
+↓
+.class (Bytecode)
+↓
+JVM
+↓
+Execution
+
+Compiler: "Convert and check my Java code."
+JVM: "Run the bytecode."
+
+Is the compiler part of the JDK? Yes.
+
+The Java Development Kit (JDK) contains the Java compiler.
+------------------------------------------------------
+
+How do you install jdk download?
+- just go to your browser and search for jdk download
+
+Java is platform independent is because of JVM, because in your machine you will be having JVM irrespective of which OS you use.
+If you have JVM, you can run Java application
+
+
+1.Why Java is called "Write Once, Run Anywhere"
+ - The bytecode produced by the compiler is platform-independent. As long as a computer has a compatible JVM installed, the same .class file can run on different operating systems like Windows, macOS, or Linux without recompiling.
+
+Java code works in several steps:
+1. You write the Java program
+You create a file with a .java extension.
+Ex:
+
+public class Hello {
+  public static void main(String[] args) {
+      System.out.println("Hello, World!");
+  }
+}
+2. The Java compiler compiles the code
+The Java compiler (javac) translates the source code into bytecode.
+Command: javac Hello.java
+This creates a file named: Hello.class
+
+3.The JVM runs the bytecode
+The Java Virtual Machine (JVM) reads the .class file and converts the bytecode into machine code that your computer's processor can execute.
+Command: java Hello
+Output: Hello, World!
+Java Source Code (.java)
+        │
+        ▼
+ Java Compiler (javac)
+        │
+        ▼
+   Bytecode (.class)
+        │
+        ▼
+Java Virtual Machine (JVM)
+        │
+        ▼
+Machine Code
+        │
+        ▼
+Program Output
+
+What is Java, and what are its key features?
+ - Java is a high-level, class-based, object-oriented programming language and a platform designed to develop applications that can run across different operating systems.
+ - Java was originally developed by Sun Microsystems and is now maintained by Oracle and the Java community.
+ - Java source code is compiled into bytecode, and that bytecode can run on any operating system that has a compatible JVM.
+
+Why is Java called platform independent?
+ - Java is platform independent because the compiled Java bytecode can run on different platforms through platform-specific JVM implementations.
+ - Java bytecode is platform independent, while the JVM is platform dependent.
+
+ Is JVM platform independent?
+ - No, the JVM itself is platform dependent. We have different JVM implementations for different operating systems and hardware architectures. 
+ - Java achieves platform independence because the bytecode generated by the Java compiler is platform-neutral, and each platform-specific JVM executes that same bytecode.
+
+Is Java completely object-oriented?
+ - Java is object-oriented, but it is not a pure object-oriented language because it supports primitive data types such as int, char, boolean and double, which are not objects.
+ - Because in a purely object-oriented language, everything would be treated as an object. Java has primitives for performance and simplicity.
+ 
+What are the major components of the Java platform?
+
+                    Java Platform
+                         |
+        +----------------+----------------+
+        |                |                |
+       JDK              JRE              JVM
+        |                |                |
+ Development       Runtime          Executes
+   tools           libraries        bytecode
+
+JDK:- Used for developing Java applications.
+It contains:
+1.JRE, 2.JVM, 3.Java compiler, 4.Debugging tools, 5.Packaging tools, 6.Documentation tools, 7.Other development utilities
+JRE:- Provides the environment required to run Java applications.
+JVM:- The JVM is responsible for executing Java bytecode.
+It handles things such as:
+1.Class loading, 2.Bytecode verification, 3.Runtime execution, 4.Memory management, 5.Garbage collection, 6.JIT compilation, 7.Thread management
+
+What is the difference between JDK, JRE and JVM?
+ - JDK is for development, JRE is for runtime environment, and JVM is responsible for executing bytecode.
+
+What exactly does the Java compiler do?
+ - The Java compiler, javac, compiles Java source code into platform-independent JVM bytecode stored in .class files. 
+ - At runtime, the JVM loads, verifies and executes that bytecode. Depending on the JVM and execution profile, bytecode may be interpreted and/or compiled into 
+native machine code by the JIT compiler.
+
+Compiler vs Interpreter:
+ - A compiler translates the program before execution.
+ - An interpreter executes instructions during runtime, generally processing them step by step rather than producing a complete native executable ahead of time.
+ - The Java compiler first converts: .java → .class
+ - Then the JVM can execute the bytecode using an interpreter and/or JIT compiler.
+
+What is JIT Compiler?
+
+
+Is JIT part of JVM?
+ - Yes. JIT is a component/part of the JVM's execution system.
+
+JVM
+ |
+ +-- Class Loader
+ |
+ +-- Bytecode Verification
+ |
+ +-- Runtime Memory Areas
+ |
+ +-- Execution Engine
+       |
+       +-- Interpreter
+       |
+       +-- JIT Compiler
+       |
+       +-- Garbage Collection

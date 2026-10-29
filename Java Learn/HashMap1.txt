@@ -1,0 +1,71 @@
+Map 
+-----------
+  -> map is an interface 
+  -> it is not part of the collection hierarchy 
+  -> object are stored key and value pair 
+  -> key doesn't allow duplicate 
+  -> value will be a duplicate
+  -> key and value both are allow null value 
+  
+  
+  
+   
+   HashMap 
+   --------------
+     -> hashmap is subclass of map interface 
+	 -> stored data as key-value pair 
+     -> hashmap doesn't maintain insertion order 
+	 -> hetro  object are allowed 
+	 -> Keys must be unique
+	 -> Values can be not unique  
+	 -> default capacity  = 16
+	 -> hashmap allow only one null key 
+	 -> Hash Table + Array + LinkedList/Tree
+	     int index = hash & (n-1);
+	 
+	 
+	 
+2) Methods in Map Interface:
+| Method                        | Description                        |
+| ----------------------------- | ---------------------------------- |
+|  put(K key, V value)          | insert or replace value by key     |
+|  putAll(Map m)                | copy all entries from another map  |
+|  get(Object key)              | returns value for the given key    |
+|  remove(Object key)           | removes entry for key              |
+|  containsKey(Object key)      | checks key presence                |
+|  containsValue(Object value)  | checks value presence              |
+|  keySet()                     | returns all keys as Set            |
+|  values()                     | returns all values as Collection   |
+|  entrySet()                   | returns all key-value pairs as Set |
+|  size()                       | number of entries                  |
+|  clear()                      | removes all entries                |
+|  isEmpty()                    | checks if empty                    |
+
+Iterating a Map: 
+-> keySet()
+-> values()
+-> entrySet()
+-> forEach()
+-> getValue();
+
+
+Internal Structure:
+-------------------
+class Node<K, V> {
+    final int hash;
+    final K key;
+    V value;
+    Node<K, V> next; // for collision (linked list)
+}
+ 
+
+
+ Questions
+ --------------
+ 
+ Count frequency of characters in a String
+ Count frequency of words in a sentence 
+ Find duplicate elements in an array using HashMap
+ Print non-duplicate elements from an array
+ Find first repeated character using LinkedHashmap    abcbbabscd
+ Find first non-repeated character using LinkedHashm	

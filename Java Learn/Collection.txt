@@ -1,0 +1,101 @@
+Collection 
+-----------
+ -> Collection is framework that provids ready-made architecture 
+    to store and manipulate group of object 
+	
+   -> Collections provide ready-made data structures (List, Set, Queue Map).
+   -> Provide algorithms (sorting, searching)
+   -> Provide type safety using Generics.
+ 
+   
+   
+                       Iterable  
+					      |
+					  Collection
+					      |
+	     List -----       Set   ------           Queue 
+          |                |                     |
+          |-> ArrayList    |-> HashSet           |-> priorityQueue
+          |-> LinkedList   |-> LinkedHasSet      | 
+		              |   sortedSet             Dequeue
+          |-> Vector  |     |                      |
+                |     |	 TreeSet	             ArrayDequeue 
+			  Stack	  |_______________________________|	  
+			
+ Iterable
+ ---------
+     -> The Iterable interface in Java is the root interface of the Java Collection Framework
+	 -> It is part of the java.lang package and is used to represent a collection of elements that can be iterated using a loop.
+	  
+	Methods 
+	--------------------------
+	1.iterator();   --> will return Iterator interface 
+	2.splitItareator(); --> will return SplitItareator  
+	3.ForEach();  -->  void 
+
+    
+ Collection   
+--------------------------  
+   -> in java collection is an interface 
+   -> it is present in java. util package 
+   -> sub interface of collection framework (list ,set ,queue)
+   
+ 
+Methods 
+-------------------
+add(E e) ---> Boolean	                              	Adds an element to the collection.
+addAll(Collection<? extends E> c) ---> Boolean	      	Adds all elements from another collection.
+remove(Object o) --->     Boolean 	                Removes a specific element.
+removeAll(Collection<?> c)	---> Boolean            Removes all elements from another collection.
+clear()	    --->      void                            	Removes all elements.
+size()	   --->  int                                  	Returns the number of elements.
+isEmpty()   --->  Boolean	                        Checks if the collection is empty.
+contains(Object o)  ---> Boolean 	                Checks if an element is present.
+containsAll(Collection<?> c) ---> Boolean	        Checks if all elements of another collection are present.
+toArray()	 --> array[]                            Converts the collection into an array
+
+retainAll() -->                                      used to get a Commend List  // it will remove unwanted Element 
+
+
+ removeIf() --->            it contains Predicate Action           Remove the Element based on Predicate condition 
+ Stream()------->            used to streaming a Element 
+ ParalelStream ()----->      used to achieve the paralelStream 
+ 
+	
+	
+List 
+--------------
+
+ list is a sub-interface of Collection interface use to store order data;
+
+List Interface
+--------------
+-> List maintain the insersion order 
+-> ArrayList, LinkedList, Vector -> Stack
+-> element ( homogenous and heterogenous )
+-> List allows duplicate element and null 
+
+
+ add(int index, E element)  ---> void 
+
+   get(int index)   ------> element 
+
+   indexOf(Object o)  ----> will return index else  -1
+
+   lastIndexOf(Object o) ------>  it is also return index of the element matching last 
+
+   listIterator()       -------> 
+
+   listIterator(int index)
+
+   remove(int index)
+
+   replaceAll(UnaryOperator<E> operator)  
+
+   set(int index, E element)  
+
+   sort(Comparator<? super E> c)
+	
+   subList(int fromIndex, int toIndex)
+
+

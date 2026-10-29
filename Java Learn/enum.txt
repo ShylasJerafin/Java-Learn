@@ -1,0 +1,30 @@
+
+Enum  
+----------------
+
+What is Enum in Java?
+An enum is a special type (class) used to define a fixed set of constants.
+
+
+
+enum Status {
+    SUCCESS,
+    FAILED,
+    PENDING
+}
+
+
+
+
+Java enum can have:
+
+Fields
+Constructor
+Methods
+
+-> Type safety
+-> Fixed set of values
+-> Cleaner code
+-> Avoid bugs
+-> Can behave like a class
+

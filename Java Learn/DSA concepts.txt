@@ -1,0 +1,38 @@
+Stack - first in last out
+Queue - First in first out
+Linked List - previous-next
+Tree - social media(insta)
+Graph - Google maps
+
+sorting
+1.Internal Sorting - small amt of data
+2.External Sorting - massive amt of data
+
+Bubble Sort
+ - first bigger number to sort
+ - then to next bigger value
+ - Time complexity (n2)
+
+Sorting 
+Searching 
+Stack & Queue
+
+Introduction:
+ - how to store the data efficiently and save memory.
+ - if you're simply dump the data, you're expanding the memory and if we want to search something in the data, will be difficult. That's why storing the data efficiently is important.
+ - That's where Data structure comes in
+Data Structure:
+ - is a way to organize and store data efficiently.
+ - Efficient means 1.Performance 2.Memory
+Data & Datatypes:
+  - Data Collection - Data Processing - Data output - Data storage
+ - To store the data, we use variables - every variable is different type based on the data (int, char, string)
+int - 1,4,6,7
+double - 2.5,12.4,6.7
+String - "Jera", "Shylas"
+ - if you want to store a complex datatype - like if you want to represent the phone or a person - Ex: Phone
+Name, Model no, Brand, Configuration all are data.
+ - if you want represent a physical thing in the virtual world we use object there
+Ex: in C use structure and OOP languages we use class, here we use different variable with primitive type and the class itself is a complex datatype (or) user-defined datatype - because system is not giving we are defining our own type.
+Abstract Datatype:
+

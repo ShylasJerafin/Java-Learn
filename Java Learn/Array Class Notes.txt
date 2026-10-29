@@ -1,0 +1,128 @@
+Arrays
+
+Contents
+• Introduction
+• Single Dimensional Array
+• Multi Dimensional Array
+• Multi Dimensional Array: JaggedArray
+
+Introduction
+• An array is a container that holds a fixed number of values of a same data type.
+• Need of Array: Difficult to manage large number of variable in normal way. The idea of array is to represent many instances in one variable.
+• Length of the array is fixed and index starts with 0. Can’t access the elements beyond  the array limit.
+
+Types
+• There are three types of arrays in Java:
+	• Single Dimensional Array
+	• Multi dimensional Array
+	• Jagged Array
+
+Single Dimensional Array
+  
+• Single dimensional array is a collection of items under common name  in linear array fashion.
+
+
+• Declaration
+• Syntax
+
+dataType[] arrayName;(or)//int[] arr;
+dataType arrayName[];//int arr[];
+
+Instantiation of an Array in Java
+
+arrayReferenceVariable = new dataType[size]
+
+Example
+int[] salary; //declaration
+salary=new int[10]; //Instantiation
+Declaration and Instantiation 
+int salary[]=new int[10];
+
+Note: 
+•Array declaration only create reference of array variable.
+•To create or give memory to array only at that time of array instantiation.
+
+
+Create Array
+• int [] marks=new int[10];   //declaration and instantiation 
+(OR)
+• int marks[]=new int[10]; 
+
+• The [] operator is the indication to the compiler we are naming an array object and not an ordinary variable.
+• Java Array is object, we use the new operator to create an array.
+
+
+Define or initialize Array values:
+
+	• There are two ways to define the array values:
+
+1. During Declaration: int [] marks=new int[]{89, 90, 67,35, 99, 80};
+2. Using index : int marks[]=new int[10]; // declaration
+marks[0]=89;
+marks[1]=90;
+………..
+• Array Length: To find the array length java provides inbuilt length variable
+int len=marks.length; //assigns the size of marks array in to the variable len
+
+
+Retrieving and Processing Array Elements
+
+• Array elements are accessed using index value. The index starts with 0.
+element=marks[3]; //retrieve 4th element of array
+marks[4]= 100; // update 100 into 5th position
+
+• Since more number of elements are there in an array, loops are more convenient way to process.
+
+• In general, array elements are accessed and processed using for loop and for….each loop.
+
+Multi Dimensional Array
+
+• In general, more than one dimension refer to the multi dimensional array. Its is array of arrays. The retrieve and processing like single dimensional array.
+
+• Declaration and Instantiation
+
+• Two-DimensionalArray: In the form of matrix which represents collection of rows and columns.
+Syntax:
+
+DataType[][] ArrayName = new int[RowSize][ColumnSize];
+int bookCount[][] = new int[3][3];
+
+• Three Dimensional Array: In the form of table and each table contains number of rows and columns.
+
+Syntax:
+DataType[][][] ArrayName = new int[TableSize][RowSize][ColumnSize];
+int bookCount[][][]= new int[3][3][3];
+
+Need for Multi-dimensional Array:
+• Data is stored in the form of table or matrix form. It is used to represents the data in different dimension like row and column wise.
+
+• It is used to represents Graph and database like data structure.
+
+• Specifically used to find minimum spanning tree and connectivity checking between nodes.
+
+Multi Dimensional Array : Jagged Array
+• Java supports jagged array. It is array of arrays with different number of columns.
+• Declaration and Instantiation
+• Jagged Array: In the form of matrix which represents fixed number of rows and different 
+size columns.
+
+Syntax:
+
+DataType[][] Array_Name = new int[Row_Size][];
+int bookNo[][] = new int[3][]; //variable size column
+
+//adding column  
+bookNo[0] = new int[3];  //0th row contains 3 columns 
+bookNo[1] = new int[5];  //1st row contains 5 columns 
+bookNo[2] = new int[1];  //2nd row contains 1 column
+
+Need for JaggedArray:
+• It improves the performance when working with multi-dimensional arrays.
+• In a jagged array, which is an array of arrays, each inner array can be of a different size. It helps the efficient memory management.
+
+• Forexample:
+
+• Course registration count based on different category.
+• Ticket reservation details based on different category. Etc.
+
+

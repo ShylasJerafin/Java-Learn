@@ -1,0 +1,430 @@
+Java Memory Allocation
+
+1]What is Memory Allocation?
+	When a Java program runs, the JVM needs memory to store:
+Variables
+Objects
+Methods
+Classes
+Arrays
+Strings
+Method calls
+Static data
+
+The JVM divides memory into different areas.
+
+The most important areas for beginners are:
+
+JVM Memory
+│
+├── Stack - stores method call frames, local variables, partial results; one stack per thread
+│
+├── Heap - stores all objects and instance variables; shared across threads
+│
+├── Method Area - stores class-level data: class structure, static variables, method bytecode, constant pool
+│
+├── PC (Program Counter) Register — holds the address of the currently executing JVM instruction; one per thread
+│
+└── Native Method Stack — supports native (non-Java, e.g., C/C++ via JNI) method calls
+
+Note: Actual variable/object memory allocation happens primarily during runtime, not when you compile the Java file.
+
+2]Stack vs Heap
+| Stack                                     | Heap                                  |
+| ----------------------------------------- | ------------------------------------- |
+| Associated with method execution          | Stores objects/arrays                 |
+| Contains local variables/references       | Contains object instance data         |
+| Stack frames are created for method calls | Objects created using `new` live here |
+| Automatically managed as methods return   | Managed by Garbage Collector          |
+| Each thread has its own stack             | Heap is shared among threads          |
+
+Stack													Heap
+--------------------------------------------------  |	---------------------------------------------		|	
+Stores local variables, method calls, references	|	Stores actual objects and instance variables
+Memory allocated/deallocated automatically (LIFO) 	|	Managed by Garbage Collector
+as methods enter/exit								|
+Faster access										|	Relatively slower access
+Thread-specific (each thread has its own stack)		|	Shared across all threads
+Fixed/limited size — can cause StackOverflowError	|	Larger, can cause OutOfMemoryError
+ ----------------------------------------------------------------------------------------------------
+                         JVM
+                          |
+        ┌─────────────────┼─────────────────┐
+        ↓                 ↓                 ↓
+      STACK             HEAP          METHOD AREA
+        |                 |                 |
+        |                 |                 |
+   method frames       objects          class info
+   local variables     arrays           methods
+   references                           static data
+        |                 |
+        |                 |
+        └──── references ─┘
+		
+3]Stack Overflow:
+	Because stack memory is limited, excessive method calls can cause: StackOverflowError
+Ex:
+class Demo {
+    static void test() {
+        test();
+    }
+    public static void main(String[] args) {
+        test();
+    }
+}
+What happens:
+main()
+ ↓
+test()
+ ↓
+test()
+ ↓
+test()
+ ↓
+test()
+ ↓
+...
+
+Stack keep growing
+┌──────────┐
+│ test()   │
+├──────────┤
+│ test()   │
+├──────────┤
+│ test()   │
+├──────────┤
+│ test()   │
+├──────────┤
+│ main()   │
+└──────────┘
+Eventually -> StackOverflowError
+
+4]Heap Overflow
+	Heap is where objects and arrays are allocated.
+If your program keeps creating objects and they remain reachable:
+Ex:
+while (true) {
+    Student s = new Student();
+}
+Depending on what remains reachable and JVM behavior, excessive heap usage can eventually result in:
+OutOfMemoryError: Java heap space
+
+5]Stack vs Heap — thread safety
+ - Each thread has its own separate stack, so local variables are inherently thread-safe — no other thread can access another thread's stack. 
+ - The heap is shared across all threads, so objects on the heap are not thread-safe by default and require explicit synchronization if accessed concurrently.
+
+6]How does Java decide to remove an object from heap?
+ - The Garbage Collector identifies objects that are no longer reachable 
+ — i.e., no live reference points to them from GC roots (active threads, static references, local variables in call stack). 
+ - Once unreachable, the object becomes eligible for garbage collection and its memory is reclaimed.
+
+Classes and Objects
+
+1]Objects:
+	• Object is the primary unit of Object-Oriented Programming.
+	• It represents the real-life entities. Example: pen, chair, table, computer, watch, etc.,
+	• It can be physical or logical.
+	• An object has three characteristics:
+		1. State: represents data or value stored in an object.
+		2. Behavior: represents the behavior or functionality of an object. This function is used to manipulate the data and interact with other objects
+		3. Identity: It gives unique name to an object. Each object is identified in Java by unique memory location.
+2]Class: 
+	• Class is a template or blueprint of the objects.
+	• It defines the state (variables) and behaviour (methods) common to all objects of a certain kind.
+	• It is used to create object instances.
+	
+3]Access  Modifiers:
+	• Access modifiers or specifiers defines the scope and accessibility of data and method in class.
+	• There are three Java access modifiers:
+		1. public: accessible in all class in your application.
+		2. protected: accessible within the class in which it is defined and in its subclass(es).
+		3. private: accessible only within the class in which it is defined.
+		4. default (declared/defined without using any modifier) : accessible within same class and package
+		within which its class is defined.
+Note:
+• For classes and interface, you can use either public or default
+• For attributes, methods and constructors, you can use the one of the following: Private, Protected, Public
+
+Constructors
+
+1]Definition:
+	- In java, Constructor is a special method that is executed automatically whenever an instance of object is created. 
+	- It is  used to initialize the object and give initial values for object 	attributes. 
+Rules for Constructor: 
+  • Constructor has same name as class name.
+    [Java needs a way to distinguish a constructor from a normal method]
+  • Constructor do not have return value but can take arguments.
+    [Because a constructor's job is to initialize a newly created object]
+    [Java creates the object and calls: The constructor doesn't return the object to you like a normal method]
+    [Constructors can receive values just like methods: The constructor uses these values to initialize the object]
+  • Constructor cannot be abstract, static, final, and synchronized.
+    [static belongs to the class, whereas a constructor is used to initialize an object.]
+    [final means something cannot be changed/overridden. Constructors are not inherited by child classes.]
+    An abstract method means: "I am declaring a method, but I am not providing its implementation."
+    [But constructors must have a body because their purpose is to initialize an object.]
+    synchronized is mainly used to control access to methods/blocks when multiple threads are working with the same object/class
+
+2]Types of Constructor
+There are two types of constructors in Java:
+	1. No-argument/default constructor
+	2. Parameterized constructor
+Default Constructor
+	• A constructor that has no parameters is known as default constructor. It is either user defined or compiler defined constructor.
+	• If we don’t create any constructor in a class, then compiler creates default constructor for the class and assign default values to attributes .
+	• The user defined default constructor provides user given initial values to attributes of the class  for each instantiation.
+Parameterized Constructor
+	• A constructor that accepts arguments are known as parameterized constructor. It is use to initialize with your own values.
+	• In parameterized constructor, we must provide initial values of objects as arguments to the constructors.
+Constructor Overloading
+	• More than one constructor with different parameter lists depending on the application. Each constructors functions in its own distinct way.
+
+3]Constructor Chaining:
+  - Constructor chaining is the process of calling one constructor from another constructor to reuse initialization code.
+  - One constructor calls another constructor.
+  - Instead of writing the same initialization code in multiple constructors, we can make one constructor call another.
+  - There are two types of constructor chaining:
+    i)Within the same class → using this() - this() is used to call another constructor of the same class
+    ii)Between parent and child classes → using super() - super() calls the parent class constructor
+
+4]this vs super
+| `this()`                                        | `super()`                                     |
+| ----------------------------------------------- | --------------------------------------------- |
+| Calls another constructor in the **same class** | Calls constructor of the **parent class**     |
+| Constructor chaining within same class          | Constructor chaining between parent and child |
+| `this()`                                        | `super()`                                     |
+| Must be first statement                         | Must be first statement                       |
+
+this  → refers to the current object instance; used to access instance variables/methods,
+super → parent class object/part - super is mainly used when inheritance is involved. - It refers to the immediate parent class.
+this() is used to call another constructor in the same class.
+super() calls parent constructor
+
+5]Copy Constructor:
+  - A copy constructor is a constructor that creates a new object by copying the values from an existing object.
+  - Object 1 → copy its values → Object 2
+Ex:
+class Employee {
+    String name;
+    int age;
+    Employee(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+    // Copy constructor
+    Employee(Employee other) {
+        this.name = other.name;
+        this.age = other.age;
+    }
+}
+Employee e1 = new Employee("John", 30);
+Employee e2 = new Employee(e1); // copy of e1
+
+6]Copy constructor — does Java provide one built-in?
+ - No, unlike C++, Java doesn't provide a built-in copy constructor. 
+ - You must implement it manually if you want to create a new object as a copy of an existing one.
+
+7]Constructor vs method
+Constructor						Method
+Same name as class				Any valid name
+No return type					Has a return type (or void)
+Called automatically via new	Called explicitly
+Initializes object state		Defines behavior
+
+8]What happens if a subclass constructor doesn't explicitly call super()?
+ - The compiler automatically inserts an implicit super() call (no-arg) as the first statement, invoking the parent's no-arg constructor. 
+ - If the parent class doesn't have a no-arg constructor (only a parameterized one exists), this causes a compile-time error, 
+and you must explicitly call super(args) matching an available parent constructor.
+
+9]Can a constructor call itself repeatedly, or two constructors call each other?
+ - No — Java's compiler detects this at compile time and throws an error: recursive constructor invocation. 
+ - This applies both to a constructor calling itself directly via this(), and to two constructors calling each other in a cycle 
+(A calls B, B calls A) — since it would result in infinite recursion with no base case, similar to a method with no termination condition.
+Ex:
+Employee() { this(5); }      // ERROR: recursive constructor invocation
+Employee(int x) { this(); }
+
+10]Can a constructor be inherited? Can it be overridden?
+ - No to both. Constructors are not inherited by subclasses.
+ - The reason is simple: a constructor belongs specifically to the class whose object it creates.
+
+Note:
+ - Constructors are not inherited and cannot be overridden because they belong to the class in which they are declared. 
+ - However, constructors can be overloaded, and a child constructor can call its parent constructor using super(). 
+ 
+11]Can a constructor be private? Use case?
+ - Yes. A private constructor prevents instantiation from outside the class
+ 
+Note:
+ - Yes, a constructor can be private in Java. A private constructor prevents direct object creation from outside the class. 
+ - It is commonly used in Singleton classes, utility classes, factory methods, and when a class wants full control over 
+ how its objects are created. 
+
+Static & Non-Static:
+
+1]Static block — when executed?
+ - A block of code marked static { } that runs once, when the class is first loaded into memory by the JVM (before main() 
+or any object creation) — used to initialize static variables or perform one-time setup.
+
+2]Instance (non-static) block — when executed?
+ - A block of code { } (no static keyword) inside a class that runs every time an object is created, right before the constructor body executes.
+
+3]Multiple static blocks
+ - Yes, allowed. They execute in the order they appear in the source code, top to bottom, as if they were merged into one.
+ 
+4]Does static block run every object creation or only once?
+ - Only once — when the class is loaded by the ClassLoader, regardless of how many objects are subsequently created.
+
+5]Static block vs static method
+ - Static block — runs automatically at class loading time, no explicit call needed
+ - Static method — must be explicitly invoked (ClassName.method()); doesn't run automatically
+
+6]Can you access instance variables inside a static block?
+ - No — a static block runs at class loading time, before any object exists. 
+ - Since instance variables belong to objects (which don't exist yet), the compiler throws an error if you try to 
+access them directly inside a static context.
+
+7]Do objects share static variables?
+	- 	Yes — static variables belong to the class, not to individual objects, so all instances share the same single copy. 
+Changing it through one object reflects across all others.
+Ex:
+class Counter {
+    static int count = 0;
+    Counter() { count++; }
+}
+Counter c1 = new Counter(); // count = 1
+Counter c2 = new Counter(); // count = 2 (shared, not separate per object)
+
+Encapsulation:
+
+1]Definition:
+	• Encapsulation is a another important concept of Object Oriented Programming.
+	• It is the process of binding the data and behaviour into a single unit called class.
+Need of Encapsulation:
+	• In this world, many data are sensitive, confidential and personal. Hence privacy is an important threat with respect to every data.
+	• Data privacy is achieved with the help of encapsulation concept in Java.
+Achieve encapsulation in Java:
+	• Encapsulation can be achieved by declaring data in the class members as private.
+	• Provide public setter and getter methods to modify and view the private class members. (Good Practice)
+Note:
+	• Encapsulation prevents the private class members being accessed by external classes and
+	methods. Therefore, it is also known as data hiding.
+
+2]Setter and getter Methods:
+	- It is used to update and retrieve the value of variables.
+Rules for setter Method:
+	• It should be public, if it needs to be accessed from outside.
+	• The return-type should be void.
+	• The setter method should be prefixed with set.
+	• It should take some argument i.e. it should not be no-argument method.
+Rules for getter Method:
+	• It should be public, if it needs to be accessed from outside
+	• The return-type should not be void i.e. according to our requirement we have to give return-type.
+	• The getter method should be prefixed with get.
+	• It should not take any argument.
+
+Inheritance:
+
+1]Introduction
+ - Inheritance is the OOP mechanism where one class (child/subclass/derived) acquires the properties and behaviors of 
+ another class (parent/superclass/base), using the extends keyword.
+ - Inheritance represents the IS-A relationship which is also known as a parent-child relationship.
+ 
+Subclass/Child class:
+ - Subclass is a class which inherits the other class. It is also called a derived class, extended class, or child class.
+ - Child classes will have the properties of parent class and its own attributes and behaviors that are unique to it as well.
+Super Class/Parent Class: 
+ - Super class is the class from where a subclass inherits the features. It is also called a base class or a parent class.
+ 
+2]Why do we need Inheritance? (Need/Purpose)
+ - Code reusability — common logic written once in the parent, reused by all children
+ - Method overriding / runtime polymorphism — inheritance is a prerequisite for it
+ - Establishes an IS-A relationship — Car IS-A Vehicle, modeling real-world hierarchies
+ - Extensibility — new subclasses can be added without modifying existing code (Open/Closed Principle)
+ - Maintainability — a fix in the parent automatically propagates to all subclasses
+ 
+3]Types of Inheritance
+	• Single Inheritance
+		- Single inheritance is the concept of deriving the properties and behaviours from single base (parent) class
+Ex:
+class A{
+	….
+}
+class  B extends A{
+	….
+}
+	• Multilevel Inheritance
+		- In the case of multi-level inheritance, a subclass that is inheriting one parent class will also act as the base class for another class.
+Ex:
+class A{
+	….
+}
+class  B extends A{
+	….
+}
+class  C extends B{
+	….
+}
+	• Hierarchical Inheritance
+		- In Hierarchical Inheritance concept, there is one base class for multiple subclasses.
+Ex:
+class A{
+	….
+}
+class  B extends A{
+	….
+}
+class  C extends A{
+	….
+}
+
+	• Multiple Inheritance
+		- Multiple Inheritance concept, there is more than one base classes for a subclass.
+
+	• Hybrid Inheritance
+
+Note:
+ • Java supports Single, Multilevel and Hierarchical inheritance directly, but Multiple and Hybrid inheritance can be achieved through Interfaces.
+
+4]Why doesn't Java support Multiple Inheritance through classes?
+ - Because of the Diamond Problem — ambiguity when two parent classes provide the same method and the compiler can't determine 
+ which implementation the child should inherit.
+ Ex:
+      A (method m())
+     / \
+    B   C  (both override m())
+     \ /
+      D    ← which m() does D inherit? Ambiguous.
+
+5]What is the extends keyword? What about implements?
+ - extends — used for class-to-class inheritance (only one allowed), and interface-to-interface inheritance (multiple allowed)
+ - implements — used when a class implements an interface (multiple allowed)
+ 
+6]What is the super keyword used for in inheritance?
+Three uses:
+ - super.method() — call the parent's version of an overridden method
+ - super.field — access a parent field hidden by a same-named child field
+ - super() — invoke the parent's constructor (must be the first statement)
+Ex:
+class Car extends Vehicle {
+    @Override
+    void start() {
+        super.start();   // reuse parent logic
+        System.out.println("...then Car-specific logic");
+    }
+}
+
+7]Can an interface extend a class?
+ - No. An interface can only extend other interfaces (one or many). 
+ - A class can extend one class and implement many interfaces
+ 
+8]What happens if the parent has only a parameterized constructor?
+ - The child must explicitly call super(args), otherwise the implicit super() call fails to find a matching no-arg constructor 
+ → compile-time error.
+
+9]IS-A vs HAS-A relationship (Inheritance vs Composition)
+ - IS-A (Inheritance) — Car IS-A Vehicle; achieved via extends/implements
+ - HAS-A (Composition/Aggregation) — Car HAS-A Engine; achieved by holding a reference to another object as a field.
+Ex:
+class Car {
+    private Engine engine;   // HAS-A relationship (composition)
+}

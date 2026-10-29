@@ -1,0 +1,458 @@
+
+Polymorphism
+
+1]Introduction
+  • Polymorphism can be defined as the ability of an object to take many forms. Simply , polymorphism allows performing the same action in different ways.
+  • Example:
+    - A person at the same time can have different characteristics. Like a man at the same time is a father, a husband, an employee. 
+    So, the same person posse's different behaviour in different situations.
+
+2]Types of Polymorphism:
+  There are two types of polymorphism in java:
+    1. Static Polymorphism also known as compile time polymorphism 
+      Example :Method Overloading
+    2. Dynamic Polymorphism also known as runtime polymorphism
+      Example: Method Overriding
+
+            	Compile-time Polymorphism                			Runtime Polymorphism
+Also called        Static polymorphism / Static binding / Early binding  		Dynamic polymorphism / Dynamic binding / Late binding
+Achieved by        Method Overloading                     		Method Overriding
+Resolved at        Compile time, by the compiler              		Runtime, by the JVM
+Based on        	Reference type / argument types              		Actual object type
+Requires inheritance?  No                            			Yes
+
+3]Static Polymorphism (or) compile time polymorphism
+  • When a type of the object is determined at the compile time (by the compiler), it is known as compile time polymorphism or static binding or Early Binding.
+  • That means Java would be able to understand which function to be called, at the compile time itself.
+  • Example: Method Overloading
+  • Method overloading : If the class contains two or more methods having the same name but different arguments/signature, then it is called as method overloading.
+  • The compiler will be able to make the call to a correct method, depending on the actual number of arguments, its datatype and these quence they are passed in.
+
+4]Runtime polymorphism: Method Overriding
+  • The process of binding the code associated with the function call during runtime rather than compile time is known as Runtime Polymorphism 
+  or Dynamic Binding or Late Binding.
+  • Example: Method Overriding
+  • Method Overriding: If subclass (child class) has same name, same parameters and same return type as a method in super-class then the method 
+  in the subclass is said to override the method in the super-class.
+  • In simple words, the function has same name and same signature is known as method overriding.
+  • Overridden method in Java application is called and executed at run time only. In method overriding the derived class can give its 
+  own specific implementation to an inherited method.
+  • Runtime Polymorphism means: A parent-class reference can point to a child-class object, and Java decides at runtime 
+	which overridden method should execute. It is also called Dynamic Method Dispatch.
+Ex:
+class Vehicle {
+    void start() { System.out.println("Generic start"); }
+}
+class Car extends Vehicle {
+    @Override
+    void start() { System.out.println("Car starts with key"); }
+}
+Vehicle v = new Car();
+v.start();  // "Car starts with key" — resolved at runtime
+	
+5]Overloading vs Overriding (classic question)
+Overloading											Overriding
+Same method name, different parameters				Same method name, same parameters
+Within the same class (or via inheritance)			Requires inheritance (parent-child)
+Compile-time polymorphism (static binding)			Runtime polymorphism (dynamic binding)
+Return type can differ freely						Return type must be same or covariant
+Access modifier can be anything						Cannot reduce visibility
+private/static/final methods can be overloaded		Cannot be overridden
+
+6]Rules for overriding:
+	1. Method name and parameter list must be identical
+	2. Return type must be same or a covariant (subclass) return type
+	3. Access modifier cannot be more restrictive (can be same or wider — e.g., protected → public is fine, public → private is not)
+	4. Cannot override final, static, or private methods
+	5. Overriding method can throw fewer or narrower checked exceptions, not broader ones (unchecked exceptions are unrestricted)
+	6. Only inherited/accessible methods can be overridden
+
+7]What is Method Hiding?
+ - When a static method in a subclass has the same signature as a static method in the parent, it's hidden, not overridden. 
+ Resolution happens at compile time based on the reference type, not the object type.
+Ex:
+class Parent { static void show() { System.out.println("Parent"); } }
+class Child extends Parent { static void show() { System.out.println("Child"); } }
+
+Parent p = new Child();
+p.show();  // "Parent" — static method resolved by reference type, NOT overridden
+
+8]Advantages of Polymorphism
+	- Flexibility & extensibility — add new subclasses without modifying existing client code (Open/Closed Principle)
+	- Code reusability — write generic code that works with an entire family of types
+	- Loose coupling — code depends on abstractions (interfaces) rather than concrete classes
+	- Maintainability — behavior changes are localized to the specific subclass
+	- Enables design patterns — Strategy, Factory, Template Method, Observer all rely on polymorphism
+	- Cleaner code — replaces long if-else/switch chains on type with polymorphic dispatch 
+	
+10]Disadvantages of Polymorphism
+	- Slight runtime overhead — dynamic dispatch requires a vtable lookup (usually negligible; 
+	JIT can devirtualize/inline monomorphic call sites)
+	- Harder to trace — you can't tell from the code alone which implementation will actually run, making debugging and code navigation harder
+	- Increased design complexity — requires careful hierarchy/interface design upfront
+	- Risk of misuse — poorly designed hierarchies can violate LSP and create fragile code
+
+11]final Keyword
+	• final keyword can be used in context of behavioral restriction on
+		– Variables: When a variable is made as final then it behaves as constant
+		– Methods: If a method is set as final then it cannot be overridden by the sub classes. It restricts overriding.
+		– Classes: When a class is set as final then it prevents from being inherited.
+		
+12]Is polymorphism possible without inheritance?
+	- Runtime polymorphism requires inheritance or interface implementation. Compile-time polymorphism (overloading) does not.
+
+13]Can constructors be polymorphic?
+	- No — constructors are neither inherited nor overridden, so there's no polymorphic dispatch. They can, however, be overloaded.
+
+14]What is the role of @Override annotation?
+	- It's optional but strongly recommended. It tells the compiler to verify the method genuinely overrides a parent method 
+	— catching typos in method names or signature mismatches at compile time rather than producing a silent, unrelated new method.
+	
+Typecasting
+
+1]Introduction:
+ - Typecasting means converting one reference type into another compatible reference type.
+ - With inheritance, there are mainly two types:
+	1. Upcasting
+	2. Downcasting
+Ex:
+class Animal {
+    void sound() {System.out.println("Animal sound");}
+	void test() {System.out.println("Testing");}
+}
+class Dog extends Animal {
+    @Override
+    void sound() {System.out.println("Dog says Woof");}
+    void fetch() {System.out.println("Dog fetches the ball");}
+}
+public class Main {
+    public static void main(String[] args) {
+        Animal a = new Dog();   // Upcasting
+        a.sound();
+		a.test(); 
+        Dog d = (Dog) a;        // Downcasting
+        d.fetch();
+    }
+}
+	
+2.Upcasting:
+ - Upcasting means: Converting a child object reference into a parent reference. [assigning a subclass object to a superclass reference.]
+ - Implicit, always safe. This is what enables runtime polymorphism.
+Ex:
+	a.fetch(); -- doesn't compile.
+	Because the reference type is: Animal -- And Animal doesn't contain: fetch();
+	Even though the actual object is a Dog.
+	Reference type decides:	"What methods can I call?"
+	Actual object decides:	"Which overridden implementation runs?"
+
+3.Downcasting 
+ — converting a superclass reference back to a subclass reference. Must be explicit, and can fail at runtime.
+Ex:
+	Suppose we have: Animal a = new Dog();
+	Now we want access to the Dog-specific method: fetch();
+	We need to convert the Animal reference back to Dog. This is downcasting.
+	Dog d = (Dog) a; -- Then d.fetch(); works
+
+Abstraction
+
+1]Introduction
+ • It is a process of hiding the implementation details and showing only the functionality to the user.
+ • For Example, when you send an email to someone you just click send and you get the success message.
+		– What happens when you click send?
+		– How is data transmitted over network to the recipient?– All these are hidden from you (because it is irrelevant to you).
+In Java, abstraction is achieved via:
+	- Abstract classes (0% to 100% abstraction)
+	- Interfaces (100% abstraction before Java 8; partial after default methods)
+	
+2]What is an Abstract Class?
+	- A class declared with the abstract keyword that cannot be instantiated and may contain both abstract methods (no body) 
+	and concrete methods (with body).
+Rules of Abstract Classes
+	- Declared with the abstract keyword
+	- Cannot be instantiated directly (new Vehicle() → compile error)
+	- Can have abstract methods, concrete methods, or both
+	- Can have abstract methods only if the class is abstract (reverse isn't required)
+	- An abstract class can exist with zero abstract methods (used to prevent instantiation while still providing shared logic)
+	- Can have constructors — invoked via super() when a subclass is instantiated
+	- Can have instance variables, static variables, static methods, and blocks
+	- Can have final methods (which subclasses must not override)
+	- If a subclass doesn't implement all inherited abstract methods, it must itself be declared abstract
+	- Cannot be final (final prevents extension, which defeats the purpose) or private
+	- Supports all access modifiers for its members
+	
+3]What is an Abstract Method?
+	- A method declared without a body, marked abstract, that must be implemented by the first concrete subclass.
+	- Rules:
+		- Can only exist inside an abstract class or an interface
+		- Cannot be private, static, or final (all three contradict the requirement to be overridden)
+		- The subclass must override it, unless the subclass is also declared abstract
+	
+4]Abstraction vs Encapsulation
+
+Abstraction										Encapsulation
+Hides implementation complexity					Hides data/internal state
+Design-level concept							Implementation-level concept
+Achieved via abstract classes & interfaces		Achieved via access modifiers (private) + getters/setters
+Focuses on what an object does					Focuses on how access to data is controlled
+Solves problem at design stage					Solves problem at implementation stage
+
+Note: "Abstraction hides complexity by exposing only relevant behavior; encapsulation hides data by restricting direct access to it."
+ 
+5]Why can't an abstract class be instantiated?
+	- Because it's incomplete — it may contain abstract methods with no implementation. 
+	If you could create an object of it, calling an unimplemented method would have no defined behavior. 
+	It exists to be extended, not used directly.
+
+6]Why does an abstract class have a constructor if it can't be instantiated?
+	- The constructor isn't used to create an abstract class object — it's invoked implicitly via super() 
+	when a concrete subclass is instantiated, to initialize the inherited state (instance variables) defined in the abstract class.
+	
+7]Can an abstract class have a main method? Can it be static?
+	- Yes to both — main() is a static method, and static members belong to the class, not instances, so they can be defined 
+	and executed in an abstract class without instantiating it.
+	
+Interface
+
+1]Introduction:
+  • Another way to achieve Abstraction in java is interface. Unlike abstract class an interface is used for full  abstraction.
+  • Interface is a reference type in java. It is very similar to class, but it is not a class. In interface all the variables declared in 
+  final static variables by default and methods are public abstract by default.
+  • From Java 8 onwards interface also support default methods and static methods, which may have implementation details.
+  • Default methods were introduced to provide backward compatibility for old interfaces so that they can have new methods without effecting existing code.
+  • Syntax:
+  interface interfaceName { ... }
+  • It is used to achieve full abstraction(100%).
+  • Multiple Inheritance can be achieved with interfaces, because the class can implement multiple interfaces.
+
+2]Rules of Interfaces
+  - All methods are implicitly public abstract (before Java 8) — you don't need to write those keywords
+  - All variables are implicitly public static final (constants) — must be initialized at declaration
+  - Cannot be instantiated directly
+  - Cannot have constructors (no state to initialize, no instantiation)
+  [When a class implements an interface, it is like signing an agreement. The agreement indicates that the class will implement the methods 
+  defined by the interface.]
+  - Cannot have instance variables (no object state)
+  - A class implements an interface; an interface extends another interface
+  - A class can implement multiple interfaces (this is how Java achieves multiple inheritance of type)
+  - An interface can extend multiple interfaces
+  - Implementing class must override all abstract methods, or be declared abstract itself
+  - Overriding methods must be public (can't reduce visibility from the implicit public)
+  - Interfaces are implicitly abstract
+
+3]Interface Enhancements by Java Version (important for 5-year level)
+Java Version    Feature Added
+Java 7 and before  Only public abstract methods + public static final constants
+Java 8        default methods and static methods with bodies
+Java 9        private and private static methods
+
+4]Why were they introduced? 
+  - For backward compatibility. Java 8 needed to add methods like stream() and forEach() to existing interfaces such as 
+  Collection and Iterable. Without default methods, every existing implementation across the entire Java ecosystem would have broken. 
+  Default methods let interfaces evolve without breaking implementers.
+Static Methods (Java 8)
+  - Utility methods belonging to the interface itself, called via the interface name. Not inherited by implementing classes.
+Ex:
+interface Drivable {
+    void drive();
+    default void honk() {
+        System.out.println("Beep beep");   // has implementation
+    }
+}
+Private Methods (Java 9)
+  - Used to share common code between default methods within the interface, without exposing it publicly.
+Ex:
+interface Logger {
+    default void logInfo(String msg)  { log("INFO", msg); }
+    default void logError(String msg) { log("ERROR", msg); }
+    private void log(String level, String msg) {     // internal helper, hidden
+        System.out.println("[" + level + "] " + msg);
+    }
+}
+
+The Diamond Problem with Default Methods
+  - Since interfaces can now have implementations, ambiguity is possible when two interfaces provide the same default method. 
+  Java forces the implementing class to explicitly resolve it:
+Ex:
+interface A { default void show() { System.out.println("A"); } }
+interface B { default void show() { System.out.println("B"); } }
+class C implements A, B {
+    @Override
+    public void show() {
+        A.super.show();          // explicitly pick A's version
+    }
+}
+Without the override, it's a compile-time error — so the ambiguity is caught early rather than resolved silently.
+
+5]Can you declare a class both abstract and final?
+  - No — contradictory. abstract means "must be extended"; final means "cannot be extended."
+
+6]Can an abstract method be static, final, or private?
+  - No to all three. static methods can't be overridden (they're hidden), final explicitly forbids overriding, and private methods 
+  aren't visible to subclasses — all three contradict the requirement that an abstract method must be implemented by a subclass.
+
+7]Can an interface have a main method?
+  - Yes, since Java 8 permits static methods in interfaces — so an interface can be run directly with a main() method.
+
+8]Can you create a reference variable of an abstract class or interface type?
+  - Yes, and this is central to polymorphism — you just can't instantiate them directly.
+
+9]What happens if a class implements two interfaces with the same abstract method signature?
+  - No conflict — the class just implements it once, satisfying both contracts simultaneously. The problem only arises with conflicting default methods.
+  - Abstract methods contain only declarations, not implementations. The implementing class provides a single method implementation, which satisfies all 
+  interfaces having the same method signature.
+  - When a class implements two interfaces having the same default method signature, a default-method conflict occurs. 
+  The implementing class must override that method to resolve the ambiguity. It can also explicitly invoke a particular interface's default 
+  implementation using InterfaceName.super.methodName().
+
+Association
+
+1]Aggregation:
+  - Aggregation is a "HAS-A" relationship where one object contains another object, but both can exist independently.
+  - Aggregation is a specialized (weaker) form of Association
+Ex:
+class Teacher{
+  String name;
+  Teacher(String name){this.name=name;} //Constructor
+}
+class Dept{
+  String name; Teacher teacher;
+  Dept(String name,Teacher teacher){
+    this.name=name;
+    this.teacher=teacher;}
+}
+public class AggrecationDemo {
+  public static void main(String[] args) {
+    Teacher jera=new Teacher("Jerafin");
+    Dept d=new Dept("IT",jera);
+  }
+}
+
+2]Composition:
+  - Composition is a stronger form of Association representing a HAS-A relationship with ownership 
+  — the "part" cannot exist independently of the "whole." When the containing object is destroyed, its parts are destroyed with it.
+Ex:
+public class CompsDemo {
+  public static void main(String[] args) {
+    Human human=new Human();
+    human.alive();
+  }
+}
+class Heart{
+  void beat() {System.out.println("Heart id beating!!!...");}
+}
+class Human{
+  Heart heart;
+  Human(){heart =new Heart();}
+  public void alive() {
+    System.out.println("Human body");
+    heart.beat();
+  }
+}
+
+3]Aggregation vs Composition — Side-by-Side (guaranteed question)
+                  	Aggregation                	Composition
+Relationship strength       Weak HAS-A                	Strong HAS-A
+Ownership              No ownership              		Owns the part
+Lifecycle dependency       Independent — part can outlive whole  	Dependent — part dies with the whole
+Object creation          Part created outside, passed in      Part created inside the container
+UML notation            Hollow diamond ◇            	Filled diamond ◆
+Example               Department–Employee, Car–Driver      House–Room, Car–Engine, Human–Heart
+Real-world analogy        A team has players, but players     	 A car has an engine built specifically for it;
+                   exist even if the team disbands       that engine has no purpose outside that car
+
+4]Association vs Aggregation vs Composition — The Full Picture
+Association  (general relationship, "uses-a")
+     │
+     ├── Aggregation  (weak "has-a", independent lifecycle, hollow diamond ◇)
+     │
+     └── Composition  (strong "has-a", dependent lifecycle, filled diamond ◆)
+
+            			Association  Aggregation  	Composition
+Type of relationship  			Uses-a  		Has-a (weak)  	Has-a (strong)
+Ownership  					None  			None  			Yes
+Lifecycle  					Independent  	Independent  	Dependent
+Can exist without the other?  	Yes  			Yes  			No
+Coupling  						Loose  		Loose-moderate Tight
+
+Coupling  
+
+1]Introduction:
+	- Coupling refers to the degree of dependency between two classes/modules — how much one class knows about or relies on the 
+	internal details of another. It's one of the key measures of software design quality, alongside cohesion.
+	- General design principle: Good software design aims for low (loose) coupling and high cohesion — classes should be as independent 
+	from each other as possible, while each class itself should be focused and self-contained.
+	
+2]Tight Coupling?
+	- Tight coupling occurs when a class is heavily dependent on the concrete implementation of another class 
+	— it directly creates, references, and relies on specific details of that other class, making the two classes hard to separate 
+	or change independently.
+Ex:
+class RazorpayGateway {
+    void pay(double amount) {System.out.println("Paid " + amount + " via Razorpay");}
+}
+class OrderService {
+    private RazorpayGateway gateway = new RazorpayGateway();   // hardcoded, concrete dependency
+    void placeOrder(double amount) {gateway.pay(amount);}
+}
+Problems with this design:
+	- OrderService is permanently locked to RazorpayGateway — switching to a different payment provider (e.g., Stripe) 
+	requires modifying OrderService's source code
+	- Hard to unit test — you can't substitute a mock/fake payment gateway; every test of OrderService actually invokes RazorpayGateway logic
+	- Violates the Open/Closed Principle (should be open for extension, closed for modification)
+	- Violates the Dependency Inversion Principle (high-level modules shouldn't depend on low-level concrete classes)
+	- A change in RazorpayGateway's constructor or internals can ripple and break OrderService
+	
+3]Loose Coupling?
+	- Loose coupling occurs when a class depends on an abstraction (interface) rather than a concrete implementation, 
+	and that dependency is provided from outside (injected) rather than created internally.
+Ex:
+interface PaymentGateway {
+    void pay(double amount);
+}
+class RazorpayGateway implements PaymentGateway {
+    public void pay(double amount) {System.out.println("Paid " + amount + " via Razorpay");}
+}
+class StripeGateway implements PaymentGateway {
+    public void pay(double amount) {System.out.println("Paid " + amount + " via Stripe");}
+}
+class OrderService {
+    private final PaymentGateway gateway;
+    OrderService(PaymentGateway gateway) {   // dependency injected, not created
+        this.gateway = gateway;
+    }
+    void placeOrder(double amount) {gateway.pay(amount);}
+}
+// Usage — swap implementation freely, without touching OrderService
+OrderService service1 = new OrderService(new RazorpayGateway());
+OrderService service2 = new OrderService(new StripeGateway());
+
+Benefits of this design:
+	- OrderService doesn't care which gateway it uses — only that it satisfies the PaymentGateway contract
+	- Easy to add a new payment provider (e.g., PaypalGateway) with zero changes to OrderService
+	- Easy to unit test — inject a mock PaymentGateway in tests without touching real payment logic
+	- Follows Dependency Inversion Principle — both OrderService and RazorpayGateway depend on the PaymentGateway abstraction, 
+	not on each other directly
+	
+4] Tight Coupling vs Loose Coupling
+
+							Tight Coupling								Loose Coupling
+Dependency type				Concrete class								Interface/abstraction
+Object creation				Created internally (new)					Injected from outside (constructor/setter)
+Flexibility					Low — hard to swap implementations			High — implementations swappable freely
+Testability					Poor — can't mock dependencies easily		Excellent — dependencies easily mocked
+Maintainability				Changes ripple across dependent classes		Changes isolated to the specific implementation
+Design principle followed	Violates DIP, OCP							Follows DIP, OCP
+Example						private RazorpayGateway gateway = new RazorpayGateway(); |	private final PaymentGateway gateway; (injected)
+
+5]How Do You Achieve Loose Coupling in Java? (practical techniques)
+	- 1.Program to an interface, not an implementation — declare variables/parameters/return types as interfaces
+	   List<String> list = new ArrayList<>();   // not: ArrayList<String> list = new ArrayList<>();
+	- 2.Dependency Injection — pass dependencies via constructor (preferred) or setter, rather than instantiating them internally
+	- 3.Factory pattern — delegate object creation to a factory, so the client class never directly instantiates concrete classes
+	- 4.Design patterns that decouple — Strategy, Observer, Factory, Dependency Injection, Adapter
+	- 5.Use frameworks like Spring — the IoC (Inversion of Control) container manages object creation and injects dependencies 
+	automatically via @Autowired/constructor injection, structurally enforcing loose coupling across the entire application
+	
+Note:
+	Coupling — how dependent classes are on each other → aim for low
+	Cohesion — how focused and self-contained a single class is → aim for high

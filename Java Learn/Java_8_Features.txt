@@ -1,0 +1,649 @@
+Java 8 Features with Examples:
+
+	Oracle released a new version of Java as Java 8 in March 18, 2014. 
+	It was a revolutionary release of the Java for software development platform. 
+	It includes various upgrades to the Java programming, JVM, Tools and libraries.
+
+1.Lambda Expressions:
+
+	Lambda expression helps us to write our code in functional style.
+	It provides a clear and concise way to implement SAM interface (Single Abstract Method) by using an expression. 
+	It is very useful in collection library in which it helps to iterate, filter and extract data.
+
+2.Functional Interface:
+	Lambda expression provides implementation of functional interface. 
+	An interface which has only one abstract method is called functional interface. 
+	Java provides an anotation @FunctionalInterface, 
+	which is used to declare an interface as functional interface.
+	
+	@FunctionalInterface  
+	interface MyFunctionalInterface {  
+   		void myMethod(String s);  
+	}  
+
+Java Lambda Expression Syntax :
+	(argument-list) -> {body} 
+
+No Parameter Syntax
+() -> {  
+//Body of no parameter lambda  
+}
+
+One Parameter Syntax
+(p1) -> {  
+//Body of single parameter lambda  
+} 
+ 
+Two Parameter Syntax
+(p1,p2) -> {  
+//Body of multiple parameter lambda  
+}  
+
+Interface Without Lambda Expression
+
+interface Drawable{  
+    public void draw();  
+}  
+public class LambdaExpressionExample {  
+    public static void main(String[] args) {  
+        int width=10;  
+  
+        //without lambda, Drawable implementation using anonymous class  
+        Drawable d=new Drawable (){
+	public void draw(){
+		System.out.println("Drawing "+width)
+	};
+		
+        d.draw();  
+    }  
+}  
+
+Java Lambda Expression Example: No Parameter
+
+interface Sayable{  
+    public String say();  
+}  
+public class LambdaExpressionExample3{  
+	public static void main(String[] args) {  
+    		Sayable s=()->"I have nothing to say.";  
+   		System.out.println(s.say());  
+	}  
+}  
+
+Java Lambda Expression Example: Single Parameter
+interface Sayable{  
+    public String say(String name);  
+}  
+  
+public class LambdaExpressionExample4{  
+    public static void main(String[] args) {  
+      
+        // Lambda expression with single parameter.  
+        Sayable s1=(name)-> {
+	retrun "Hello, "+name;
+	 };
+  
+        System.out.println(s1.say("Sonoo"));  
+          
+        // You can omit function parentheses    
+        Sayable s2= name ->{  
+            return "Hello, "+name;  
+        };  
+        System.out.println(s2.say("Sonoo"));  
+    }  
+}  
+
+Java Lambda Expression Example: with return keyword
+
+interface Addable{  
+    int add(int a,int b);  
+}  
+  
+public class LambdaExpressionExample6 {  
+    public static void main(String[] args) {  
+          
+        // Lambda expression without return keyword.  
+        Addable ad1=(a,b)->(a+b);
+        System.out.println(ad1.add(10,20));  
+          
+        // Lambda expression with return keyword.    
+        Addable ad2=(int a,int b)->{  
+                            return (a+b);   
+                            };  
+        System.out.println(ad2.add(100,200));  
+    }  
+}  
+
+Java Lambda Expression Example: without return keyword
+
+// Functional interface with a single abstract method  
+interface MyFunctionalInterface{  
+    int add(int a, int b);  
+}  
+public class LambdaExample {  
+    public static void main(String[] args) {  
+        // Lambda expression without using the return keyword  
+        MyFunctionalInterface addition = (a, b) -> a + b;  
+
+        // Using the lambda expression to perform addition  
+        int result = addition.add(5, 7);  
+
+        // Displaying the result  
+        System.out.println("Result of addition: " + result);  
+    }  
+}  
+Java Lambda Expression Example: Foreach Loop
+
+import java.util.*;  
+public class LambdaExpressionExample7{  
+    public static void main(String[] args) {  
+          
+        List<String> list=new ArrayList<String>();  
+        list.add("ankit");  
+        list.add("mayank");  
+        list.add("irfan");  
+        list.add("jai");  
+          
+        list.forEach(  
+            (n)->System.out.println(n)  
+        );  
+    }  
+}  
+
+Java Lambda Expression Example: Multiple Statements
+
+@FunctionalInterface  
+interface Sayable{  
+    String say(String message);  
+}  
+  
+public class LambdaExpressionExample8{  
+    public static void main(String[] args) {  
+      
+        // You can pass multiple statements in lambda expression  
+        Sayable person = (message)-> {  
+            String str1 = "I would like to say, ";  
+            String str2 = str1 + message;   
+            return str2;  
+        };  
+            System.out.println(person.say("time is precious."));  
+    }  
+}  
+
+Java Lambda Expression Example: Creating Thread
+
+public class LambdaExpressionExample9{  
+    public static void main(String[] args) {  
+      
+        //Thread Example without lambda  
+        Runnable r1=new Runnable(){  
+            public void run(){  
+                System.out.println("Thread1 is running...");  
+            }  
+        };  
+
+        Thread t1=new Thread(r1);  
+        t1.start();  
+
+        //Thread Example with lambda  
+        Runnable r2=()->  System.out.println("Thread2 is running...");    
+        Thread t2=new Thread(r2);  
+        t2.start();  
+    }  
+}  
+
+Java Lambda Expression Example: Comparator
+
+import java.util.ArrayList;  
+import java.util.Collections;  
+import java.util.List; 
+ 
+class Product{  
+    int id;  
+    String name;  
+    float price;  
+    public Product(int id, String name, float price) {  
+        super();  
+        this.id = id;  
+        this.name = name;  
+        this.price = price;  
+    }  
+}  
+
+public class LambdaExpressionExample10{  
+    public static void main(String[] args) {  
+        List<Product> list=new ArrayList<Product>();  
+          
+        //Adding Products  
+        list.add(new Product(1,"HP Laptop",25000f));  
+        list.add(new Product(3,"Keyboard",300f));  
+        list.add(new Product(2,"Dell Mouse",150f));  
+          
+        System.out.println("Sorting on the basis of name...");  
+  
+        // implementing lambda expression  
+        Collections.sort(list,(p1,p2)->{  
+        return p1.name.compareTo(p2.name);  
+        });  
+        for(Product p:list){  
+            System.out.println(p.id+" "+p.name+" "+p.price);  
+        }  
+  
+    }  
+}  
+
+Java Method References:
+
+Java provides a new feature called method reference in Java 8. Method reference is used to refer method of functional interface.It is compact and easy form of lambda expression. Each time when you are using lambda expression to just referring a method, you can replace your lambda expression with method reference.
+
+There are following types of method references in java:
+
+Reference to a static method.
+Reference to an instance method.
+Reference to a constructor.
+
+1) Reference to a Static Method
+	ContainingClass::staticMethodName  
+
+interface Sayable{  
+    void say();  
+}  
+public class MethodReference {  
+    public static void saySomething(){  
+        System.out.println("Hello, this is static method.");  
+    }  
+    public static void main(String[] args) {  
+        // Referring static method  
+        Sayable sayable = MethodReference::saySomething;  
+        // Calling interface method  
+        sayable.say();  
+    }  
+}    
+
+2) Reference to an Instance Method
+
+	containingObject::instanceMethodName  
+
+interface Sayable{  
+    void say();  
+}
+  
+public class InstanceMethodReference {  
+    public void saySomething(){  
+        System.out.println("Hello, this is non-static method.");  
+    }  
+
+    public static void main(String[] args) {  
+        InstanceMethodReference methodReference = new InstanceMethodReference(); // Creating object
+
+        // Referring non-static method using reference  
+            Sayable sayable = methodReference::saySomething; 
+ 
+        // Calling interface method  
+            sayable.say();  
+
+            // Referring non-static method using anonymous object  
+            Sayable sayable2 = new InstanceMethodReference()::saySomething; // You can 								use anonymous object also  
+            // Calling interface method  
+            sayable2.say();  
+    }  
+}  
+
+3) Reference to a Constructor
+	ClassName::new 
+
+ 
+interface Messageable{  
+    Message getMessage(String msg);  
+}  
+
+
+class Message{  
+    Message(String msg){  
+        System.out.print(msg);  
+    }  
+}  
+public class ConstructorReference {  
+    public static void main(String[] args) {  
+        Messageable hello = Message::new;  
+        hello.getMessage("Hello");  
+    }  
+}  
+--------------------------------------------------------------------------------
+Default methods and Static Method:
+
+Java 8 introduced default methods in interfaces, allowing interfaces to have concrete implementations for methods, and static methods, which belong to the interface itself and can be accessed directly without an object. 
+ 
+Default Methods:
+
+Purpose		: Provide default implementations for methods within an interface.
+Implementation  : Declared with the default keyword.
+
+Example: 
+
+    interface MyInterface {
+        void abstractMethod(); // Abstract method
+        default void defaultMethod() {
+            System.out.println("Default implementation");
+        }
+    }
+
+Static Methods:
+
+Purpose		: Provide utility or helper methods for the interface.
+Implementation  : Declared with the static keyword.
+Access          : Called using the interface name, not an object instance.
+
+Example: 
+    interface MyInterface {
+        static void staticMethod() {
+            System.out.println("Static implementation");
+        }
+    }
+----------------------------------------------------------------------------
+		IMPORTANT JAVA 8 DEFAULT & STATIC METHODS
+----------------------------------------------------------------------------
+Predicate
+Purpose
+
+Predicate = condition checking
+
+It checks something and answers only:
+	- true or false
+
+Abstract Method (only one)
+	- test
+	- This is the main method
+	- Used to check a condition
+
+--- Default Methods ---
+
+Predicate has default methods to:
+	- combine conditions
+	- Default methods meaning:
+		- and → both conditions must be true
+		- or → any one condition true
+		- negate → reverse the condition
+
+Why default?
+	- Because these are common operations on conditions.
+
+--- Static Method ---
+	
+	- isEqual
+
+Why static?
+	- Because comparison logic belongs to Predicate itself, not to an object.
+-------------------------------------------------------------------------------
+
+2️.BiPredicate
+
+Purpose
+BiPredicate = condition check using TWO values
+Example idea:
+	- username + password
+	- age + salary
+
+-- Abstract Method
+	- test
+	- Takes two inputs
+	- Returns true or false
+
+-- Default Methods
+	- Same idea as Predicate:
+		- and
+		- or
+		- negate
+Why?
+	- To combine multiple two-value conditions easily
+
+-- Static Methods
+	- No static method here
+
+3️.Supplier
+Purpose
+Supplier = gives data
+	- No input
+	- Just supplies something when asked
+
+-- Abstract Method
+	- get
+	- Returns a value
+
+Default Methods
+	- No default methods
+
+Static Methods
+	- No static methods
+-------------------------------------------------------
+4️.Consumer
+
+Purpose
+Consumer = uses data
+	- Takes input
+	- Performs action
+	- Returns nothing
+
+Abstract Method
+	- accept
+	- Uses the input
+
+Default Method
+	- andThen
+
+Why default?
+	- Because chaining actions is very common
+
+Static Methods
+	- No static methods
+-----------------------------------------------------------------
+5️.BiConsumer
+Purpose
+BiConsumer = uses TWO inputs
+	- key + value
+	- name + age
+
+Abstract Method
+	- accept
+	- Takes two inputs
+	- Returns nothing	
+
+Default Method
+	- andThen
+
+Static Methods
+	- No static methods
+----------------------------------------------------
+6️.Function
+
+Purpose
+Function = transforms data
+	- Input → Output
+	- Output can be different type
+
+Abstract Method
+	- apply
+	- Converts input to output
+
+Default Methods
+	- andThen → first convert, then convert result
+
+		- input → first function → result → second function → final result
+
+	- compose → convert before main conversion
+		- input → before function → result → main function → final result
+
+Why default?
+	- Because data transformation pipelines are common.
+
+Static Method
+	- identity
+	- Returns input as output (no change)
+
+7️.BiFunction
+Purpose
+
+BiFunction = combines TWO inputs into ONE output
+	- price + tax → total
+	- firstName + lastName → fullName
+
+Abstract Method
+	- apply
+	- Takes two inputs
+	- Returns one output
+
+Default Method
+	- andThen()
+
+Static Methods
+	- No static methods
+
+
+
+----------------------------------------------------------------------------
+// ===============================
+// JAVA DATE & TIME API – METHOD NOTES
+// ===============================
+
+// ---------- LocalDate ----------
+LocalDate.now();              // Gets current system date
+LocalDate.of(y,m,d);          // Creates date with given year, month, day
+LocalDate.parse(text);        // Converts String into LocalDate
+
+getYear();                    // Returns year
+getMonth();                   // Returns month enum
+getMonthValue();              // Returns month number (1–12)
+getDayOfMonth();              // Returns day of month
+getDayOfWeek();               // Returns day of week
+
+plusDays(n);                  // Adds n days to date
+plusMonths(n);                // Adds n months to date
+plusYears(n);                 // Adds n years to date
+minusDays(n);                 // Subtracts n days from date
+minusMonths(n);               // Subtracts n months from date
+
+isBefore(date);               // Checks if date is before given date
+isAfter(date);                // Checks if date is after given date
+isLeapYear();                 // Checks if year is leap year
+
+// ---------- LocalTime ----------
+LocalTime.now();              // Gets current system time
+LocalTime.of(h,m,s);          // Creates time with hour, minute, second
+LocalTime.parse(text);        // Converts String into LocalTime
+
+getHour();                    // Returns hour
+getMinute();                  // Returns minute
+getSecond();                  // Returns second
+getNano();                    // Returns nanoseconds
+
+plusHours(n);                 // Adds hours to time
+plusMinutes(n);               // Adds minutes to time
+minusSeconds(n);              // Subtracts seconds from time
+
+// ---------- LocalDateTime ----------
+LocalDateTime.now();          // Gets current date and time
+LocalDateTime.of(...);        // Creates date and time
+LocalDateTime.parse(text);    // Converts String into LocalDateTime
+
+getYear();                    // Returns year
+getMonth();                   // Returns month
+getDayOfMonth();              // Returns day of month
+getHour();                    // Returns hour
+getMinute();                  // Returns minute
+
+plusDays(n);                  // Adds days
+minusHours(n);                // Subtracts hours
+
+toLocalDate();                // Extracts LocalDate
+toLocalTime();                // Extracts LocalTime
+
+// ---------- ZonedDateTime ----------
+ZonedDateTime.now();          // Gets current date-time with system zone
+ZonedDateTime.now(zone);      // Gets date-time for given zone
+
+getZone();                    // Returns timezone
+getOffset();                  // Returns UTC offset
+toLocalDateTime();            // Removes timezone information
+
+// ---------- ZoneId ----------
+ZoneId.systemDefault();       // Returns system default timezone
+ZoneId.of(id);                // Creates ZoneId using zone string
+ZoneId.getAvailableZoneIds(); // Returns all supported zone IDs
+
+// ---------- Period ----------
+Period.between(d1,d2);        // Calculates date difference
+getYears();                   // Returns years in period
+getMonths();                  // Returns months in period
+getDays();                    // Returns days in period
+
+// ---------- Duration ----------
+Duration.between(t1,t2);      // Calculates time difference
+toHours();                    // Converts duration to hours
+toMinutes();                  // Converts duration to minutes
+getSeconds();                 // Returns total seconds
+
+// ---------- DateTimeFormatter ----------
+ISO_DATE;                     // Predefined ISO date format
+ofPattern(pattern);           // Creates custom date-time format
+format(date);                 // Converts date/time to String
+parse(text);                  // Converts String to date/time
+
+// ---------- Instant ----------
+Instant.now();                // Gets current timestamp (UTC)
+getEpochSecond();             // Returns seconds from 1970-01-01
+getNano();                    // Returns nanosecond part
+
+// ---------- ChronoUnit ----------
+DAYS.between(d1,d2);          // Calculates days between dates
+YEARS.between(d1,d2);         // Calculates years between dates
+
+// ===============================
+// END – ONE LINE METHOD EXPLANATION NOTES
+// ===============================
+
+----------------------------Predicate Interface------------------------------
+
+Java 8, a Predicate is a functional interface that represents a boolean-valued function of one argument. It's used to evaluate a condition on an input and return true or false based on whether the condition is met. The Predicate interface has a single abstract method called test(T t), where T is the type of the input.
+ 
+----------------------------Optinal Class---------------------------------------
+- The Optional class in Java is a container object that may or may not contain a non-  null value.
+
+- It was introduced in Java 8 to provide a better way to handle the absence of a value     and avoid NullPointerException.
+
+- Optional is a final class present in the java.util package. It is a generic class,     meaning it can hold an object of any type
+
+Method					Description
+
+of()				Creates Optional with a non-null value
+ofNullable()			Creates Optional that may contain null
+empty()				Creates an empty Optional
+isPresent()			Returns true if a value exists
+isEmpty()			Returns true if no value exists (Java 11+)
+get()				Returns the value (throws exception if empty)
+ifPresent()			Executes action if value exists
+ifPresentOrElse()		Executes one action if present,another if absent(Java9+)
+orElse()			Returns the value or a default value
+orElseGet()			Returns the value or lazily generates a default
+orElseThrow()			Returns the value or throws an exception
+filter()			Keeps the value only if it matches a condition
+map()				Transforms the value into another type
+flatMap()			Similar to map(), but mapper returns an Optional
+
+---------------------------Stream API------------
+
+- The Stream API, introduced in Java 8, provides a functional approach to process 	    collections of objects.
+
+- A stream represents a sequence of elements and supports different operations to perform   computations. Streams do not store data and cannot modify the source collection.
+
+- A Stream is a sequence of data elements that can be processed one by one.
+
+Why use Stream API?
+	- Cleaner & shorter code
+	- Supports functional programming
+	- Improves readability
+	- Avoids explicit loops (for, while)
+
+Data source → Stream operations → Result
+
+		     |
+Source → Intermediate Operations → Terminal Operation → Result

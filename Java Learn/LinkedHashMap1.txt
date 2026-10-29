@@ -1,0 +1,45 @@
+Linked HashMap 
+--------------
+  -> LinkedHashMap is a subclass of HashMap
+  -> that maintains insertion / Access Order
+  -> same as hashmap to stored  key and values pair
+  -> it compains hashmap and Doubly linked list
+   -> Every node is connected using before & after references  
+  -> hetro  object are allowed 
+  
+ 
+    LinkedHashMap Constructor 
+	---------------------------
+ LinkedHashMap()
+ LinkedHashMap(int initialCapacity)
+ LinkedHashMap(int initialCapacity, float loadFactor)
+ LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)
+ 
+ 
+class Node<K,V>
+{
+final int hash;
+final K key;
+V value;
+
+Node<K,V> before; 
+Node<K,V> after;
+}
+
+
+| Feature          | Description                                 |
+| ---------------- | ------------------------------------------- |
+| Ordering         | Maintains   insertion order   by default    |
+| Access Order     | Can maintain   access order   if configured |
+| Null             | One null key, multiple null values allowed  |
+| Duplicates       | Keys: not allowed, Values: allowed          |
+| Thread-safe      | Not synchronized                            |
+| Performance      | Almost same as HashMap                      |
+| Load Factor      | Default 0.75                                |
+| Initial Capacity | Default 16                                  |
+ 
+
+ -> linkedHashMap is same as hashmap like data stored and capacity then colletion 
+    everything same only its follow insertion order and Access order 
+	
+	

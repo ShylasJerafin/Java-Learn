@@ -1,0 +1,48 @@
+Java Topics
+Module I - Basic Fundamentals
+ - Java Lifecycle
+ - Keywords
+ - Datatypes
+ - Variables
+ - Operators
+    1.Arithmetic Operators (+,-,*,/,%,=)
+    2.Relational Operators (>,<,>=,<=,==,!=)
+    3.Logical Operators (AND,OR,NOT)
+    4.Bitwise Operators (AND,OR,XOR)
+    5.Unary Operators
+       - Increment & Decrement(++,--)
+       - Pre & Post
+ - Control Statements
+    1.If Else Statements
+    2.For Loop
+    3.While & Do While
+    4.Switch Statements
+ - Methods (pass & return a value)
+ - Arrays ( Dimensions, Initializers)
+ - Scanners
+ - Identifiers
+ - Strings
+Module II - OOPS
+ - Static & Non Static
+ - Class & Object
+ - Memory Management
+ - Blocks
+ - Constructors 
+ - Types of Constructor (Default,Zero Argument,Parameterized)
+ - Copy Consructor
+ - Constructor Overloading 
+ - Access Modifiers
+ - Composition
+ - Constructor Chaining (this,super)
+ - Encapsulation
+ - Inheritance (Single,Multi-level,Hybrid,Multiple,Hierarichal)
+ - Type Casting (Upcasting,Downcasting)
+ - Method Binding
+ - Method Overloading
+ - Method Overriding
+ - Polymorphism (Compile-time,Run-time)
+ - Abstraction (Abstract Class,Interface)
+Module III
+ - Exception Handling
+ - File Handling
+ - Threading

@@ -1,0 +1,132 @@
+Datatypes
+Variables
+ - Static, Non-Static and Local Variables
+Operators
+ - Arithmetic, Assignment, Unary, Relational, Logical, Bitwise, Shift, Ternary
+Methods
+Control Flow Statements
+ - If else, If-else-if(Else-if ladder), Nested if
+ - Switch case
+ - Looping Statements (for, for-each, while, do while, nested)
+ - Jumping Statements (break, continue)
+Typecasting
+ - Widening, Narrowing
+Naming Conventions
+Packages
+ - default, public, protected, private
+Access Modifier
+Scanner Class
+ - Scanner doesn't provide any inbuilt methods to read "char" values directly.
+ - Instead, the most common way is to use next().charAt(0).
+
+OOPS - Object Oriented Programming
+1.Memory Allocation
+2.Class & Object
+ - Multiple Object Creation
+ - Array of the Object
+3.Static & Non-Static Block
+4.Constructors
+ - this, super, this(), super()
+ - Types of Constructor
+ - Copy Constructor
+ - Constructor Overloading
+ - Constructor Chaining
+5.Encapsulation
+ - Private Keyword
+ - getter & setter methods
+6.IS-A Relationship -> Inheritance
+ - Single, Multilevel, Hierarchical
+7.Polymorphism
+ - Static - Method Overloading - Compile time
+ - Dynamic - Method Overriding - Runtime
+8.Has-A Relationship -> Association
+ - Aggregation
+ - Composition
+9.Casting
+ - Upcasting
+ - Down casting
+10.Abstraction
+ -  class - cannot be used to create objects
+ - Method
+Note: abstract method is a method which will not have the body, where as concrete methods must have the body.
+• Any class that extends an abstract class must implement all the abstract methods declared by the super class.
+11.Interface
+ - In interface all the variables declared in final static variables by default and methods are public abstract by default.
+ - Multiple Inheritance can be achieved with interfaces, because the class can implement multiple interfaces.
+ - The class which is implementing the interface, must define all the methods of interface.
+ - We cannot create object for interface.
+12.Coupling
+
+Arrays
+ - Types :
+ - Single Dimensional Array
+ - Multi Dimensional Array
+ - Jagged Array
+
+Exception handling
+ - Exception Types :
+ - Checked Exceptions, Unchecked Exceptions, Errors
+ - try & catch  block & finally block
+ - throw, throws
+ - User-defined Exception
+
+String Class
+ - String Methods
+ - String Buffer & String Builder
+ - String Buffer & String Builder Methods
+
+Multithreading
+ - Thread Life Cycle
+ - Thread class [methods]
+ - Runnable interface
+ - Anonymous Inner Class
+ - Synchronization
+ - Executor Service
+ - Callable Interface
+ - Inner Thread Communication
+ - Daemon Thread
+ - Deadlock
+
+File Handling
+ - Serialization & De-serialization
+ 
+Utility Class
+ - Math Utility Class
+ - Array Utility Class
+ - Object Class
+ - Cloneable
+ - finalize()
+ - Garbage Collector
+
+Generics
+
+Wrapper Class
+
+Collection Framework
+ - List
+	- ArrayList
+	- LinkedList
+	- Vector <- Stack
+ - Queue
+	- Priority Queue
+	- Deque
+		- ArrayDeque
+ - Set
+	- HashSet
+	- LinkedHashSet
+	
+	- SortedSet <- TreeSet
+	
+ArrayList:
+ - subclass of List Interface
+ - can store both homo and heterogeneous type of objects.
+ - Data structure is growable in size
+ - Default capacity = 10
+ - It also implements from RandomAccess, Cloneable, Serializable.
+ - Objects are stored in continuous memory.
+ - If our frequent operation is insertion and deletion, ArrayList is not recommended to use.
+ - Because it follows shift wise moving -> so slower the performance
+ - If our frequent operation is fetching datas from the object.
+ - Duplicate values and null elemets are allowed.
+ - Maintains insertion order
+ 
